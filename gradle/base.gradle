@@ -1,0 +1,56 @@
+apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: "kotlin-kapt"
+
+apply from: "$rootDir/dependencies.gradle"
+
+android {
+    compileSdkVersion androidVersions.compile
+    buildToolsVersion androidVersions.build_tools
+
+    defaultConfig {
+        minSdkVersion androidVersions.min
+        targetSdkVersion androidVersions.target
+        versionCode 1
+        versionName "1.0.0"
+
+        compileOptions {
+            sourceCompatibility javaVersion
+            targetCompatibility javaVersion
+        }
+
+        kotlinOptions {
+            jvmTarget = javaVersion.toString()
+        }
+
+        consumerProguardFiles 'consumer-rules.pro'
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled true
+            proguardFiles 'proguard-rules.pro'
+        }
+    }
+
+    testOptions {
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation runDependencies.kotlin_std_lib
+
+    implementation runDependencies.koin_android
+    implementation runDependencies.koin_android_fragment
+    implementation runDependencies.koin_android_scope
+    implementation runDependencies.koin_android_view_model
+    implementation runDependencies.rx_android
+    implementation runDependencies.rx_kotlin
+    implementation runDependencies.androidx_appcompat
+    implementation runDependencies.androidx_core
+
+    testImplementation testDependencies.junit
+
+}

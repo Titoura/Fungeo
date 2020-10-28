@@ -1,0 +1,72 @@
+ext {
+    ext.kotlin_version = "1.4.10"
+
+    // Versions sorted alphabetically
+    versions = [
+            android_gradle_plugin    : "4.0.1",
+            androidx_appcompat       : "1.1.0",
+            androidx_core            : "1.3.1",
+            androidx_test_junit      : "1.1.2",
+            flipper                  : "0.61.0",
+            flipper_fresco           : "0.61.0",
+            google_gson              : "2.8.6",
+            google_play_services_auth: "18.1.0",
+            google_services          : "4.3.4",
+            koin                     : "2.1.6",
+            kotlin                   : "1.3.72",
+            junit                    : "4.13",
+            litho                    : "0.38.0",
+            retrofit                 : "2.9.0",
+            retrofit_rx_adapter      : "2.9.0",
+            retrofit_gson_converter  : "2.9.0",
+            rx                       : "3.0.0",
+            so_loader                : "0.9.0"
+    ]
+
+    androidVersions = [
+            build_tools: "29.0.2",
+            compile    : 29,
+            target     : 30,
+            min        : 26
+    ]
+
+    javaVersion = JavaVersion.VERSION_1_8
+
+    runDependencies = [
+            kotlin_std_lib                      : "org.jetbrains.kotlin:kotlin-stdlib-jdk7:${versions.kotlin}",
+            androidx_appcompat                  : "androidx.appcompat:appcompat:${versions.androidx_appcompat}",
+            androidx_constraintlayout           : "androidx.constraintlayout:constraintlayout:${versions.androidx_constraintlayout}",
+            androidx_core                       : "androidx.core:core-ktx:${versions.androidx_core}",
+            flipper                             : "com.facebook.flipper:flipper:${versions.flipper}",
+            flipper_noop                        : "com.facebook.flipper:flipper-noop:${versions.flipper}",
+            flipper_litho                       : "com.facebook.flipper:flipper-litho-plugin:${versions.litho}",
+            flipper_network                     : "com.facebook.flipper:flipper-network-plugin:${versions.flipper}",
+            google_gson                         : "com.google.code.gson:gson:${versions.google_gson}",
+            google_play_services_auth           : "com.google.android.gms:play-services-auth:${versions.google_play_services_auth}",
+            koin_android                        : "org.koin:koin-android:${versions.koin}",
+            koin_android_fragment               : "org.koin:koin-androidx-fragment:${versions.koin}",
+            koin_android_scope                  : "org.koin:koin-androidx-scope:${versions.koin}",
+            koin_android_view_model             : "org.koin:koin-androidx-viewmodel:${versions.koin}",
+            litho_core                          : "com.facebook.litho:litho-core:${versions.litho}",
+            litho_widget                        : "com.facebook.litho:litho-widget:${versions.litho}",
+            litho_annotation_processor          : "com.facebook.litho:litho-processor:${versions.litho}",
+            litho_sections_core                 : "com.facebook.litho:litho-sections-core:${versions.litho}",
+            litho_sections_widget               : "com.facebook.litho:litho-sections-widget:${versions.litho}",
+            litho_sections_annotations          : "com.facebook.litho:litho-sections-annotations:${versions.litho}",
+            litho_sections_annotations_processor: "com.facebook.litho:litho-sections-processor:${versions.litho}",
+            retrofit                            : "com.squareup.retrofit2:retrofit:${versions.retrofit}",
+            retrofit_rx_adapter                 : "com.squareup.retrofit2:adapter-rxjava3:${versions.retrofit_rx_adapter}",
+            retrofit_gson_converter             : "com.squareup.retrofit2:converter-gson:${versions.retrofit_gson_converter}",
+            rx_android                          : "io.reactivex.rxjava3:rxandroid:${versions.rx}",
+            rx_kotlin                           : "io.reactivex.rxjava3:rxkotlin:${versions.rx}"
+    ]
+
+    testDependencies = []
+
+    buildDependencies = [
+            android_gradle_plugin             : "com.android.tools.build:gradle:${versions.android_gradle_plugin}",
+            google_services                   : "com.google.gms:google-services:${versions.google_services}",
+            kotlin_all_open_gradle_plugin     : "org.jetbrains.kotlin:kotlin-allopen:${versions.kotlin}",
+            kotlin_gradle_plugin              : "org.jetbrains.kotlin:kotlin-gradle-plugin:${versions.kotlin}"
+    ]
+}
