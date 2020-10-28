@@ -1,1 +1,11 @@
 apply from: "$rootDir/gradle/base.gradle"
+
+
+dependencies{
+
+    //Retrofit
+    implementation runDependencies.retrofit
+    implementation runDependencies.retrofit_gson_converter
+    implementation runDependencies.retrofit_rx_adapter
+
+}
