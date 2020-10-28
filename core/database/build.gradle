@@ -1,1 +1,8 @@
 apply from: "$rootDir/gradle/base.gradle"
+
+
+dependencies{
+    implementation runDependencies.room_runtime
+    implementation runDependencies.room_compiler
+    implementation runDependencies.room_ktx
+}
