@@ -1,2 +1,8 @@
+include ':features:home'
+include ':core:requestsController'
+include ':core:database'
+include ':core'
+include ':libs'
+include ':features'
 include ':app'
 rootProject.name = "Fungeo"
