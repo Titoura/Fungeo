@@ -1,4 +1,4 @@
-package com.titou.database
+package com.titou.database.models
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity
@@ -10,7 +10,7 @@ data class CurrentWeather(
     @ColumnInfo(name = "weather_descriptions")
     val weatherDescriptions: String,
     @ColumnInfo(name = "wind_speed")
-    val windSpeed: String,
+    val windSpeed: Int,
     @ColumnInfo(name = "temperature")
     val temperature: Int
 )

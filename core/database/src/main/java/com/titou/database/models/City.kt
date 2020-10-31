@@ -1,4 +1,4 @@
-package com.titou.database
+package com.titou.database.models
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity

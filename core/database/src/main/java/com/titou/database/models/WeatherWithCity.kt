@@ -1,4 +1,4 @@
-package com.titou.database
+package com.titou.database.models
 
 import androidx.room.Embedded
 import androidx.room.Entity
@@ -12,5 +12,5 @@ data class WeatherWithCity(
     @Embedded
     val currentWeather: CurrentWeather,
     @Embedded
-    val weatherForecast: List<DatedWeatherForecast>,
+    val weatherForecast: List<DatedWeatherForecast>
 )

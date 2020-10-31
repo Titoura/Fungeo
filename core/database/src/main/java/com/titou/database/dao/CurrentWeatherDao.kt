@@ -2,21 +2,21 @@ package com.titou.database.dao
 
 import androidx.room.*
 import com.titou.database.models.City
+import com.titou.database.models.CurrentWeather
 
 @Dao
-interface CityDao {
+interface CurrentWeatherDao {
     
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insertCities(vararg cities: City)
+    fun insertCurrentWeathers(vararg currentWeathers: CurrentWeather)
 
     @Update
-    fun updateCities(vararg cities: City)
+    fun updateCurrentWeathers(vararg currentWeathers: CurrentWeather)
 
     @Delete
-    fun deleteCities(vararg cities: City)
+    fun deleteCurrentWeathers(vararg currentWeathers: CurrentWeather)
 
-    @Query("SELECT * FROM cities")
-    fun getAllCities(): Array<City>
-
+    @Query("SELECT * FROM current_weather")
+    fun getAllCurrentWeathers(): Array<CurrentWeather>
 
 }
