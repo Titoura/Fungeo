@@ -42,12 +42,22 @@ dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation runDependencies.kotlin_std_lib
 
+    // Koin, for DI
     implementation runDependencies.koin_android
     implementation runDependencies.koin_android_fragment
     implementation runDependencies.koin_android_scope
     implementation runDependencies.koin_android_view_model
+
+    // Litho for declarative UI
+    implementation runDependencies.litho_core
+    implementation runDependencies.litho_widget
+    implementation runDependencies.litho_annotation_processor
+
+    // RX, for reactive programming
     implementation runDependencies.rx_android
     implementation runDependencies.rx_kotlin
+
+    // Androidx
     implementation runDependencies.androidx_appcompat
     implementation runDependencies.androidx_core
 

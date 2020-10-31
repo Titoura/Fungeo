@@ -4,4 +4,6 @@ dependencies {
     implementation project(":core:database")
     implementation project(":core:requestsController")
     implementation project(":features:home")
+
+    implementation runDependencies.so_loader
 }
