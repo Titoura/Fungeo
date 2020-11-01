@@ -51,7 +51,7 @@ dependencies {
     // Litho for declarative UI
     implementation runDependencies.litho_core
     implementation runDependencies.litho_widget
-    implementation runDependencies.litho_annotation_processor
+    kapt runDependencies.litho_annotation_processor
 
     // RX, for reactive programming
     implementation runDependencies.rx_android

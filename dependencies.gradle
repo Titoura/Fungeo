@@ -3,10 +3,11 @@ ext {
 
     // Versions sorted alphabetically
     versions = [
-            android_gradle_plugin    : "4.0.1",
+            android_gradle_plugin    : '4.1.0',
             androidx_appcompat       : "1.1.0",
             androidx_core            : "1.3.1",
             androidx_test_junit      : "1.1.2",
+            androidx_constraintlayout: "2.0.4",
             flipper                  : "0.61.0",
             flipper_fresco           : "0.61.0",
             google_gson              : "2.8.6",
@@ -16,6 +17,8 @@ ext {
             kotlin                   : "1.3.72",
             junit                    : "4.13",
             litho                    : "0.38.0",
+            material                 : "1.2.1",
+            navigation               : "2.2.0",
             retrofit                 : "2.9.0",
             retrofit_rx_adapter      : "2.9.0",
             retrofit_gson_converter  : "2.9.0",
@@ -56,6 +59,9 @@ ext {
             litho_sections_widget               : "com.facebook.litho:litho-sections-widget:${versions.litho}",
             litho_sections_annotations          : "com.facebook.litho:litho-sections-annotations:${versions.litho}",
             litho_sections_annotations_processor: "com.facebook.litho:litho-sections-processor:${versions.litho}",
+            material                            : "com.google.android.material:material:${versions.material}",
+            navigation_fragment                 : "androidx.navigation:navigation-fragment:${versions.navigation}",
+            navigation_ui                       : "androidx.navigation:navigation-ui:${versions.navigation}",
             retrofit                            : "com.squareup.retrofit2:retrofit:${versions.retrofit}",
             retrofit_rx_adapter                 : "com.squareup.retrofit2:adapter-rxjava3:${versions.retrofit_rx_adapter}",
             retrofit_gson_converter             : "com.squareup.retrofit2:converter-gson:${versions.retrofit_gson_converter}",
@@ -64,7 +70,7 @@ ext {
             room_ktx                            : "androidx.room:room-ktx:${versions.room}",
             room_rxjava2                        : "androidx.room:room-rxjava2:${versions.room}",
             rx_android                          : "io.reactivex.rxjava3:rxandroid:${versions.rx}",
-            rx_kotlin                           : "io.reactivex.rxjava3:rxkotlin:${versions.rx}"
+            rx_kotlin                           : "io.reactivex.rxjava3:rxkotlin:${versions.rx}",
             so_loader                           : "com.facebook.soloader:soloader:${versions.so_loader}"
     ]
 
