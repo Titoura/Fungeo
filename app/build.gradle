@@ -1,9 +1,73 @@
-apply from: "$rootDir/gradle/base.gradle"
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: "kotlin-kapt"
+
+android {
+    compileSdkVersion androidVersions.compile
+    buildToolsVersion androidVersions.build_tools
+
+    defaultConfig {
+        applicationId "com.titou.fungeo"
+        minSdkVersion androidVersions.min
+        targetSdkVersion androidVersions.target
+        versionCode 1
+        versionName "0.0.0-development"
+        manifestPlaceholders = [
+                appAuthRedirectScheme: 'fungeo'
+        ]
+
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    compileOptions {
+        sourceCompatibility javaVersion
+        targetCompatibility javaVersion
+    }
+
+
+    buildTypes {
+        debug {
+        }
+        release {
+            minifyEnabled true
+            shrinkResources true
+            proguardFiles 'proguard-rules.pro'
+        }
+    }
+}
 
 dependencies {
-    implementation project(":core:database")
-    implementation project(":core:requestsController")
-    implementation project(":features:home")
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
 
+    implementation project(":core:database")
+    implementation project(":core:activity")
+    implementation project(":core:requestsController")
+    implementation project(":core:ui")
+    implementation project(":features:home")
+    implementation runDependencies.kotlin_std_lib
+    implementation runDependencies.koin_android
+    implementation runDependencies.koin_android_fragment
+    implementation runDependencies.koin_android_scope
+    implementation runDependencies.androidx_appcompat
+    implementation runDependencies.androidx_core
+
+    // GSON
+    implementation runDependencies.google_gson
+
+    // Reactive extensions
+    implementation runDependencies.rx_android
+    implementation runDependencies.rx_kotlin
+
+    // SoLoader (for Litho and Flipper)
     implementation runDependencies.so_loader
+
+    implementation runDependencies.retrofit
+
+    // Litho
+    implementation runDependencies.litho_core
+
+    // Litho
+    implementation runDependencies.material
 }

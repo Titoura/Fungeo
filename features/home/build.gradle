@@ -1,5 +1,13 @@
 apply from: "$rootDir/gradle/base.gradle"
+apply plugin: 'kotlin-kapt'
 
 dependencies {
     implementation project(':core:database')
+    implementation project(':core:activity')
+
+    // Litho
+    implementation runDependencies.litho_core
+    implementation runDependencies.litho_widget
+    kapt runDependencies.litho_annotation_processor
+
 }
