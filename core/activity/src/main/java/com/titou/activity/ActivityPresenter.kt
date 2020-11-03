@@ -8,8 +8,8 @@ class ActivityPresenter(
     private val router: ActivityRouter
 ) : KoinComponent {
 
-    fun handleOnBottomMenuItemSelected(menu_item: Int) =
-        router.updateDisplayedFragment(menu_item)
+    fun handleOnBottomMenuItemSelected(menu_item: Int, activity : MainActivity) =
+        router.updateDisplayedFragment(menu_item, activity)
             .doOnError {
             Log.e("ActivityPresenter", it.localizedMessage?:"Error while displaying new fragment")
         }
