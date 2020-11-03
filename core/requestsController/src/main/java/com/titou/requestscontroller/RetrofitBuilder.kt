@@ -33,7 +33,7 @@ class RetrofitBuilder : KoinComponent {
 
             //TODO: use buildconfig to store dev vs release environment
             // and centralize project values
-            val baseUrl = "https://api.weatherstack.com/"
+            val baseUrl = "https://api.openweathermap.org/data/2.5/"
 
             return Retrofit
                 .Builder()

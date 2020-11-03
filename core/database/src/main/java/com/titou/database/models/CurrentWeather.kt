@@ -2,15 +2,12 @@ package com.titou.database.models
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity
+import androidx.room.PrimaryKey
+import java.time.LocalDateTime
 
-@Entity(tableName = "current_weather")
 data class CurrentWeather(
-    @ColumnInfo(name = "observation_time")
-    val observationTime: String,
-    @ColumnInfo(name = "weather_descriptions")
-    val weatherDescriptions: String,
-    @ColumnInfo(name = "wind_speed")
-    val windSpeed: Int,
-    @ColumnInfo(name = "temperature")
-    val temperature: Int
+    val dateTime: LocalDateTime,
+    val weatherDescriptions: List<WeatherDescription> = emptyList(),
+    val temperature: Float,
+    val perceivedTemperature: Float
 )
