@@ -5,6 +5,7 @@ import com.titou.fungeo.location.LocationModule
 import com.titou.fungeo.navigation.NavigationModule
 import com.titou.home.HomeModule
 import com.titou.requestscontroller.RetrofitModule
+import com.titou.fungeo.weather.WeatherModule
 
 object KoinModules {
 
@@ -13,6 +14,7 @@ object KoinModules {
         HomeModule.module,
         NavigationModule.module,
         RetrofitModule.module,
+        WeatherModule.module,
         LocationModule.module
 
     )
