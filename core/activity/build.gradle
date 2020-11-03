@@ -5,4 +5,8 @@ dependencies{
     implementation runDependencies.navigation_fragment
     implementation runDependencies.navigation_ui
     implementation runDependencies.androidx_constraintlayout
+    implementation runDependencies.material
+
+    implementation project(":core:location")
+
 }

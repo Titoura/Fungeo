@@ -49,6 +49,7 @@ dependencies {
     implementation runDependencies.koin_android_view_model
 
     // Litho for declarative UI
+    implementation runDependencies.fb_jni
     implementation runDependencies.litho_core
     implementation runDependencies.litho_widget
     kapt runDependencies.litho_annotation_processor

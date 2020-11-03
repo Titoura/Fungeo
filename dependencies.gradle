@@ -8,6 +8,7 @@ ext {
             androidx_core            : "1.3.1",
             androidx_test_junit      : "1.1.2",
             androidx_constraintlayout: "2.0.4",
+            fb_jni                   : "0.0.2",
             flipper                  : "0.61.0",
             flipper_fresco           : "0.61.0",
             google_gson              : "2.8.6",
@@ -17,12 +18,13 @@ ext {
             kotlin                   : "1.3.72",
             junit                    : "4.13",
             litho                    : "0.38.0",
+            lottie                   : "3.4.2",
             material                 : "1.2.1",
             navigation               : "2.2.0",
             retrofit                 : "2.9.0",
             retrofit_rx_adapter      : "2.9.0",
             retrofit_gson_converter  : "2.9.0",
-            room                     : "2.2.4",
+            room                     : "2.3.0-alpha03",
             rx                       : "3.0.0",
             so_loader                : "0.9.0"
     ]
@@ -31,7 +33,7 @@ ext {
             build_tools: "29.0.2",
             compile    : 29,
             target     : 30,
-            min        : 26
+            min        : 29
     ]
 
     javaVersion = JavaVersion.VERSION_1_8
@@ -42,10 +44,12 @@ ext {
             androidx_appcompat                  : "androidx.appcompat:appcompat:${versions.androidx_appcompat}",
             androidx_constraintlayout           : "androidx.constraintlayout:constraintlayout:${versions.androidx_constraintlayout}",
             androidx_core                       : "androidx.core:core-ktx:${versions.androidx_core}",
+            swiperefreshlayout                  : "androidx.swiperefreshlayout:swiperefreshlayout:${versions.androidx_appcompat}",
             flipper                             : "com.facebook.flipper:flipper:${versions.flipper}",
             flipper_noop                        : "com.facebook.flipper:flipper-noop:${versions.flipper}",
             flipper_litho                       : "com.facebook.flipper:flipper-litho-plugin:${versions.litho}",
             flipper_network                     : "com.facebook.flipper:flipper-network-plugin:${versions.flipper}",
+            fb_jni                              : "com.facebook.fbjni:fbjni:${versions.fb_jni}",
             google_gson                         : "com.google.code.gson:gson:${versions.google_gson}",
             koin_android                        : "org.koin:koin-android:${versions.koin}",
             koin_android_fragment               : "org.koin:koin-androidx-fragment:${versions.koin}",
@@ -58,6 +62,7 @@ ext {
             litho_sections_widget               : "com.facebook.litho:litho-sections-widget:${versions.litho}",
             litho_sections_annotations          : "com.facebook.litho:litho-sections-annotations:${versions.litho}",
             litho_sections_annotations_processor: "com.facebook.litho:litho-sections-processor:${versions.litho}",
+            lottie                              : "com.airbnb.android:lottie:${versions.lottie}",
             material                            : "com.google.android.material:material:${versions.material}",
             navigation_fragment                 : "androidx.navigation:navigation-fragment:${versions.navigation}",
             navigation_ui                       : "androidx.navigation:navigation-ui:${versions.navigation}",
@@ -68,7 +73,7 @@ ext {
             room_runtime                        : "androidx.room:room-runtime:${versions.room}",
             room_compiler                       : "androidx.room:room-compiler:${versions.room}",
             room_ktx                            : "androidx.room:room-ktx:${versions.room}",
-            room_rxjava2                        : "androidx.room:room-rxjava2:${versions.room}",
+            room_rxjava3                        : "androidx.room:room-rxjava3:${versions.room}",
             rx_android                          : "io.reactivex.rxjava3:rxandroid:${versions.rx}",
             rx_kotlin                           : "io.reactivex.rxjava3:rxkotlin:${versions.rx}",
             so_loader                           : "com.facebook.soloader:soloader:${versions.so_loader}"

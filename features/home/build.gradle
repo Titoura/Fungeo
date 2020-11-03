@@ -4,10 +4,21 @@ apply plugin: 'kotlin-kapt'
 dependencies {
     implementation project(':core:database')
     implementation project(':core:activity')
+    implementation project(':core:ui')
+    implementation project(':core:location')
+    implementation project(':libs:weather')
 
     // Litho
     implementation runDependencies.litho_core
     implementation runDependencies.litho_widget
     kapt runDependencies.litho_annotation_processor
+
+    implementation runDependencies.swiperefreshlayout
+    implementation runDependencies.play_services_location
+
+
+    implementation runDependencies.litho_sections_core
+    implementation runDependencies.litho_sections_widget
+    kapt runDependencies.litho_sections_annotations_processor
 
 }
