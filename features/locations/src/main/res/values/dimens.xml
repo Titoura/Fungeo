@@ -2,4 +2,6 @@
 <resources>
 
     <dimen name="daily_weather_icon_size">40dp</dimen>
+    <dimen name="minus_icon_size">24dp</dimen>
+    <dimen name="input_radius">8dp</dimen>
 </resources>
