@@ -69,7 +69,7 @@ object DailyWeatherItemSpec {
 
             )
             .child(
-                Image.create(c).drawableRes(R.drawable.ic_sun)
+                Image.create(c).drawableRes(dailyWeather.getIconRes()?: com.titou.ui.R.drawable.ic_cloud)
                     .heightRes(R.dimen.daily_weather_icon_size)
                     .widthRes(R.dimen.daily_weather_icon_size)
             )
