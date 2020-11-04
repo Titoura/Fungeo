@@ -16,8 +16,6 @@ import com.facebook.litho.sections.widget.RecyclerBinderConfiguration
 import com.facebook.litho.sections.widget.RecyclerCollectionComponent
 import com.facebook.litho.widget.ComponentRenderInfo
 import com.facebook.litho.widget.RenderInfo
-import com.titou.database.models.DatedWeatherForecast
-import com.titou.database.models.Weather
 
 /**
  * This component renders a horizontal list with items of various heights, which can adapt height
@@ -52,17 +50,17 @@ object LocationsWeatherListSpec {
     }
 
     @OnEvent(RenderEvent::class)
-    fun onRender(c: ComponentContext, @FromEvent model: LocationWithNameAndWeather, @FromEvent index: Int): RenderInfo {
+    fun onRender(c: ComponentContext, @FromEvent model: LocationWithNameAndWeather, @FromEvent index: Int, @Prop onRemoveClick : (LocationWithNameAndWeather) -> Unit): RenderInfo {
         return ComponentRenderInfo.create()
             .component(
                 LocationWeatherItem.create(c)
                     .locationWithNameAndWeather(model)
+                    .handleOnRemoveClick{onRemoveClick(model)}
                     .widthPercent(100F)
-                    .collapseHeight(50f)
-                    .expandHeight(250f)
-                    .initialHeight(50f)
-                    .widthDip(100f)
             )
             .build()
     }
+
+
+
 }

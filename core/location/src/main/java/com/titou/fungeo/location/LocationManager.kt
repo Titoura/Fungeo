@@ -7,22 +7,20 @@ import android.content.pm.PackageManager
 import android.location.Address
 import android.location.Geocoder
 import android.location.Location
+import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import com.google.android.gms.location.FusedLocationProviderClient
-import com.google.android.gms.location.LocationCallback
-import com.google.android.gms.location.LocationResult
 import com.google.android.gms.location.LocationServices
 import com.google.android.gms.tasks.OnCompleteListener
+import com.titou.database.models.LocationWithName
 import io.reactivex.rxjava3.core.Observable
 import io.reactivex.rxjava3.core.ObservableEmitter
-import io.reactivex.rxjava3.functions.Cancellable
-import io.reactivex.rxjava3.subjects.BehaviorSubject
 import org.koin.core.KoinComponent
 import java.io.IOException
 
 
-class LocationManager {
+class LocationManager() : KoinComponent {
 
     lateinit var fusedLocationClient: FusedLocationProviderClient
 
@@ -38,24 +36,18 @@ class LocationManager {
     }
 
 
-    fun requestLocation(): Observable<Optional<Location>>? {
-        if (context.checkSelfPermission(Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
-            return Observable.just(Optional(fusedLocationClient.lastLocation.result))
-        }
-        return null
-    }
-
     fun build(appCompatActivity: AppCompatActivity) {
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(appCompatActivity)
         if (appCompatActivity.checkSelfPermission(Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             requestLocationPermission(appCompatActivity)
         }
+        requestLocation()
 
         context = appCompatActivity
 
     }
 
-    fun searchLocationPosition(locationName: String): Location {
+    fun searchLocationPosition(locationName: String, main: Boolean): LocationWithName {
 
         var addressList: List<Address> = emptyList()
 
@@ -71,27 +63,13 @@ class LocationManager {
         val location = Location("")
         location.latitude = addressList.firstOrNull()?.latitude ?: 0.0
         location.longitude = addressList.firstOrNull()?.longitude ?: 0.0
+        val newName = addressList.firstOrNull()?.locality ?: locationName.toLowerCase().capitalize()
+        val countryCode = addressList.firstOrNull()?.countryCode ?: ""
 
-        return location
+        return LocationWithName(newName, location, countryCode, main)
     }
 
-    //    fun searchCurrentLocation(): Observable<String> {
-//
-//        var addressList: List<Address> = emptyList()
-//
-//
-//        val geoCoder = Geocoder(context)
-//        try {
-//            addressList =
-//                geoCoder.getFromLocation(currentLocation.latitude, currentLocation.longitude, 1)
-//
-//        } catch (e: IOException) {
-//            e.printStackTrace()
-//        }
-//
-//
-//        return addressList.firstOrNull()?.locality
-//    }
+    // FIXME: Make a stronger request to location so that he location is fetched even f not accessed by another app
     @SuppressLint("MissingPermission")
     fun getCurrentLocationObservable(): Observable<Location> {
         return Observable.create { emitter ->
@@ -101,11 +79,21 @@ class LocationManager {
                 fusedLocationClient.lastLocation.addOnSuccessListener {
                     if (!emitter.isDisposed && it != null) emitter.onNext(it)
                 }
-                val task = fusedLocationClient.lastLocation
-                task.addOnCompleteListener(completeListener)
+
+                fusedLocationClient.lastLocation.addOnCompleteListener(completeListener)
+
             } catch (e: Exception) {
                 emitter.tryOnError(e)
             }
+        }
+    }
+
+    @SuppressLint("MissingPermission")
+    fun requestLocation(): Location? {
+        return try {
+            fusedLocationClient.lastLocation.result
+        } catch (e: java.lang.Exception) {
+            null
         }
     }
 
@@ -121,7 +109,7 @@ class LocationManager {
         }
     }
 
-    fun searchLocationName(location: Location): String? {
+    fun searchLocationNameForPosition(location: Location): String? {
 
         var addressList: List<Address> = emptyList()
 
@@ -134,7 +122,6 @@ class LocationManager {
             e.printStackTrace()
         }
 
-        val loc = searchLocationPosition("Paris")
         return addressList.firstOrNull()?.locality
     }
 

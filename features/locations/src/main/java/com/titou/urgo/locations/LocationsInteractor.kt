@@ -17,5 +17,6 @@ internal class LocationsInteractor(
     fun fetchWeatherFromServer(location: android.location.Location) = getWeatherQuery.fetchWeatherFromServerAndSave(location)
     fun getLocations() = locationWithNameRepository.getAllLocations()
     fun insertLocations(vararg locationWithName: LocationWithName) = locationWithNameRepository.insert(locationWithName.toList())
-
+    fun removeLocation(locationWithName: LocationWithName) = locationWithNameRepository.delete(locationWithName)
+    fun searchLocationForName(locationName : String, main : Boolean) = locationManager.searchLocationPosition(locationName, main)
 }

@@ -9,10 +9,11 @@ import java.util.*
 data class LocationWithName(
     @PrimaryKey
     val name : String,
-
-    val location: Location?
+    val location: Location?,
+    val countryCode: String,
+    val main: Boolean
 )
 {
-    constructor(name:String, latitude : Float, longitude: Float) : this(name, Location("").apply { this.latitude = latitude.toDouble() }.apply { this.longitude = longitude.toDouble() })
+    constructor(name:String, latitude : Float, longitude: Float, countryCode:String,main: Boolean) : this(name, Location("").apply { this.latitude = latitude.toDouble() }.apply { this.longitude = longitude.toDouble() }, countryCode, main)
 }
 

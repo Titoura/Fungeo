@@ -3,5 +3,6 @@ apply from: "$rootDir/gradle/base.gradle"
 dependencies{
     implementation runDependencies.play_services_location
     implementation runDependencies.retrofit
+    implementation project(':core:database')
 
 }

@@ -1,26 +1,18 @@
 package com.titou.urgo.locations
 
-import android.Manifest
-import android.content.Context
-import android.content.pm.PackageManager
-import android.location.Location
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.app.ActivityCompat
 import androidx.fragment.app.Fragment
 import com.facebook.litho.ComponentContext
 import com.facebook.litho.LithoView
-import com.google.android.gms.location.FusedLocationProviderClient
-import com.google.android.gms.location.LocationServices
+import com.titou.database.models.LocationWithName
 import com.titou.database.models.Weather
 import io.reactivex.rxjava3.disposables.Disposable
-import org.koin.android.ext.android.inject
 import org.koin.androidx.scope.lifecycleScope
-import java.security.Permission
 
 
 class LocationsFragment(parentActivity: AppCompatActivity) : Fragment() {
@@ -42,16 +34,17 @@ class LocationsFragment(parentActivity: AppCompatActivity) : Fragment() {
         val c = ComponentContext(context)
 
         val createView =
-            { loading: Boolean, locationWithNameAndWeather: List<LocationWithNameAndWeather>? ->
+            {  props : Props ->
                 LocationsView
                     .create(c)
-                    .loading(loading)
-                    .weathers(locationWithNameAndWeather)
+                    .onTextValidated{locationName -> presenter.handleOnTextValidated(locationName)}
+                    .handleOnRemoveClick{locationWithName -> presenter.handleOnRemoveClick(locationWithName.locationWithName)}
+                    .props(props)
             }
 
         val lithoView = LithoView.create(
             c,
-            createView(true, null)
+            createView(Props(emptyList(), true))
                 .build()
         )
 
@@ -61,7 +54,7 @@ class LocationsFragment(parentActivity: AppCompatActivity) : Fragment() {
             .subscribe({
                 lithoView.setComponentAsync(
                     createView(
-                        false, it
+                         it
                     ).build()
                 )
             }, ::onError)!!
@@ -82,6 +75,10 @@ class LocationsFragment(parentActivity: AppCompatActivity) : Fragment() {
 
 data class LocationWithNameAndWeather(
     val weather: Weather,
-    val location: Location,
-    val locationName: String
+    val locationWithName: LocationWithName
+)
+
+data class Props(
+    val locationsWithNameAndWeathers: List<LocationWithNameAndWeather>,
+    val loading : Boolean
 )
