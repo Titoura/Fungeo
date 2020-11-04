@@ -42,8 +42,27 @@ internal object LocationsViewSpec {
         .flex(1F)
         .paddingDip(YogaEdge.VERTICAL, 24f)
         .paddingRes(YogaEdge.HORIZONTAL, R.dimen.padding_default)
+        .child(
+            Text.create(c).textRes(com.titou.urgo.locations.R.string.your_locations)
+                .textAlignment(Layout.Alignment.ALIGN_CENTER)
+                .textColorRes(R.color.white)
+                .marginRes(YogaEdge.TOP, R.dimen.margin_default)
+                .typeface(Typeface.DEFAULT_BOLD)
+                .widthPercent(100F)
+                .textSizeDip(40f)
+                .marginRes(YogaEdge.BOTTOM, R.dimen.margin_xlarge)
+        )
+
         .apply {
-            if (!weathers.isNullOrEmpty()) {
+            if (loading || weathers.isNullOrEmpty()) {
+                child(
+                    Column.create(c).flex(1F).alignContent(YogaAlign.CENTER)
+                        .justifyContent(YogaJustify.CENTER).child(
+                            AnimationView.create(c).rawRes(R.raw.loader_animation)
+                                .alignSelf(YogaAlign.CENTER).widthDip(200f).heightDip(200f)
+                        )
+                )
+            } else {
                 child(
                     LocationsWeatherList.create(c).weatherList(weathers)
                 )
@@ -52,10 +71,4 @@ internal object LocationsViewSpec {
         .build()
 
 
-}
-
-fun getFiveNextHours(hourlyWeathersList: List<HourlyWeather>?): List<HourlyWeather> {
-    if (hourlyWeathersList == null) return emptyList()
-    val fiveNextTimes = listOf(3, 7, 11, 15, 19, 23)
-    return fiveNextTimes.map { hourlyWeathersList.getOrNull(it) }.requireNoNulls() ?: emptyList()
 }
