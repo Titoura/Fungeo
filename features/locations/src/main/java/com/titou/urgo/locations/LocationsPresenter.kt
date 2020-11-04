@@ -19,28 +19,36 @@ internal class LocationsPresenter(
 
         //TODO: CREATE ABILITY TO CHOOSE CITY
         val locations = listOf(
-            LocationWithName("Paris", 2.3488f, 48.8534f),
-            LocationWithName("New-York", -73.935242f, 40.730610f),
-            LocationWithName("Berlin", 13.404954f, 52.520008f),
-            LocationWithName("Marseille", 5.38107f, 43.29695f)
+            LocationWithName("Paris", 48.8534f, 2.3488f),
+            LocationWithName("New-York", 40.730610f, -73.935242f),
+            LocationWithName("Berlin", 52.520008f, 13.404954f),
+            LocationWithName("Marseille", 43.29695f, 5.38107f)
         )
 
-        return locations.map { locationWithName ->
-            interactor.fetchWeatherFromServer(
-                locationWithName.location
-                    ?: throw IllegalStateException("City location should not be null")
-            )
-                .map {
-                    LocationWithNameAndWeather(
-                        it,
-                        locationName = locationWithName.name
-                            ?: throw IllegalStateException("Location name should not be null"),
-                        location = locationWithName.location
-                            ?: throw IllegalStateException("Location coordinates should not be null")
-                    )
-                }
+        interactor.insertLocations(*locations.toTypedArray()).subscribe({},{})
 
-        }.merge().toList().toObservable()
+
+
+
+
+        return interactor.getLocations().flatMap {
+            it.map { locationWithName ->
+                interactor.fetchWeatherFromServer(
+                    locationWithName.location
+                        ?: throw IllegalStateException("Location should not be null")
+                )
+                    .map {weather ->
+                        LocationWithNameAndWeather(
+                            weather,
+                            locationName = locationWithName.name
+                                ?: throw IllegalStateException("Location name should not be null"),
+                            location = locationWithName.location
+                                ?: throw IllegalStateException("Location coordinates should not be null")
+                        )
+                    }
+
+            }.merge().toList().toObservable()
+        }
 
 
 //            .let{

@@ -1,6 +1,7 @@
 package com.titou.fungeo
 
 import com.titou.activity.ActivityModule
+import com.titou.database.DatabaseModule
 import com.titou.fungeo.location.LocationModule
 import com.titou.fungeo.navigation.NavigationModule
 import com.titou.home.HomeModule
@@ -17,6 +18,7 @@ object KoinModules {
         RetrofitModule.module,
         WeatherModule.module,
         LocationModule.module,
+        DatabaseModule.module,
         LocationsModule.module
 
     )

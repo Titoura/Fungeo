@@ -2,7 +2,13 @@ apply from: "$rootDir/gradle/base.gradle"
 
 
 dependencies{
+    implementation runDependencies.google_gson
+
+
     implementation runDependencies.room_runtime
-    implementation runDependencies.room_compiler
+    kapt runDependencies.room_compiler
     implementation runDependencies.room_ktx
+    implementation runDependencies.room_rxjava3
+    implementation runDependencies.rx_android
+    implementation runDependencies.rx_kotlin
 }

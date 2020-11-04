@@ -15,7 +15,7 @@ object LocationsModule {
 
             scope<LocationsFragment> {
                 scoped { LocationsPresenter(get()) }
-                scoped { LocationsInteractor(get(), get()) }
+                scoped { LocationsInteractor(get(), get(), get()) }
             }
 
 
