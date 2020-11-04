@@ -6,6 +6,7 @@ import com.titou.activity.BaseFragment
 import com.titou.activity.MainActivity
 import com.titou.activity.R
 import com.titou.home.HomeFragment
+import com.titou.urgo.locations.LocationsFragment
 import io.reactivex.rxjava3.core.Single
 import kotlin.system.exitProcess
 
@@ -21,7 +22,7 @@ class RootRouter : ActivityRouter {
                 HomeFragment(activity)
             R.id.navigation_locations ->
                 //FIXME : Display LocationsFragment
-                HomeFragment(activity)
+                LocationsFragment(activity)
             R.id.navigation_settings ->
                 //FIXME : Display SettingsFragment
                 HomeFragment(activity)

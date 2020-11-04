@@ -1,3 +1,4 @@
+include ':features:locations'
 include ':core:location'
 include ':libs:weather'
 include ':core:ui'
