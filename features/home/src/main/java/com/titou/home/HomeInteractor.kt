@@ -1,6 +1,5 @@
 package com.titou.home
 
-import com.titou.database.models.Location
 import com.titou.fungeo.location.LocationManager
 import com.titou.fungeo.weather.cqrs.GetWeatherQuery
 import org.koin.core.KoinComponent

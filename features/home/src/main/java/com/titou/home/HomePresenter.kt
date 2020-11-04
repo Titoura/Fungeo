@@ -1,10 +1,8 @@
 package com.titou.home
 
-import android.util.Log
+import android.location.Location
 import com.titou.database.models.*
-import io.reactivex.rxjava3.core.Completable
 import io.reactivex.rxjava3.core.Observable
-import io.reactivex.rxjava3.kotlin.Observables
 import org.koin.core.KoinComponent
 import java.time.LocalDate
 import java.time.LocalDateTime
@@ -18,14 +16,14 @@ internal class HomePresenter(
     fun props(): Observable<Props> {
 
         //TODO: CREATE ABILITY TO CHOOSE CITY
-        val paris = Location("Paris", 2.3488f, 48.8534f)
+        val paris = LocationWithName("Paris", 2.3488f, 48.8534f)
 
 //        return Observable.just(Props(mockProps()))
         return interactor.getLastLocation().flatMap { currentLocation ->
-            currentLocation.value?.let {
+            currentLocation.let {
                 interactor.fetchWeatherFromServer(it)
                     .map {
-                        currentLocation?.value?.let { location ->
+                        currentLocation?.let { location : Location ->
                             Props(weather = it, location = location, locationName = interactor.getCurrentLocationName(location)?:"Paris")
                         }
                     }

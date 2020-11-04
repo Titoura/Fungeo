@@ -24,12 +24,12 @@ fun WeatherResponseDto.toWeatherModel(): Weather {
 
     //TODO: centralize and handle exceptions
     // display toaster when exception is thrown
-    fun LocationResponseDto.toLocationModel(): Location {
-        return Location(
-            longitude = longitude ?: throw Exception("Location longitude cannot be null"),
-            latitude = latitude ?: throw Exception("Location latitude cannot be null")
-        )
-    }
+//    fun LocationResponseDto.toLocationModel(): LocationWithName {
+//        return LocationWithName(
+//            longitude = longitude ?: throw Exception("Location longitude cannot be null"),
+//            latitude = latitude ?: throw Exception("Location latitude cannot be null")
+//        )
+//    }
 
     fun CurrentWeatherResponseDto.toCurrentWeatherModel(): CurrentWeather {
         return CurrentWeather(
@@ -66,7 +66,7 @@ fun WeatherResponseDto.toWeatherModel(): Weather {
                 ?: throw Exception("Date cannot be null"),
             temperature = temp?.toTemperatureForecastModel(),
             perceivedTemperature = perceivedTemperature?.toPerceivedTemperatureModel(),
-            weatherDescription = weatherDescription.map{ it?.toWeatherDescriptionModel()}.requireNoNulls()
+            weatherDescriptions = weatherDescription.map{ it?.toWeatherDescriptionModel()}.requireNoNulls()
         )
     }
 

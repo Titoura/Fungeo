@@ -1,6 +1,7 @@
 package com.titou.fungeo.location
 
 import android.Manifest
+import android.annotation.SuppressLint
 import android.content.Context
 import android.content.pm.PackageManager
 import android.location.Address
@@ -9,8 +10,13 @@ import android.location.Location
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import com.google.android.gms.location.FusedLocationProviderClient
+import com.google.android.gms.location.LocationCallback
+import com.google.android.gms.location.LocationResult
 import com.google.android.gms.location.LocationServices
+import com.google.android.gms.tasks.OnCompleteListener
 import io.reactivex.rxjava3.core.Observable
+import io.reactivex.rxjava3.core.ObservableEmitter
+import io.reactivex.rxjava3.functions.Cancellable
 import io.reactivex.rxjava3.subjects.BehaviorSubject
 import org.koin.core.KoinComponent
 import java.io.IOException
@@ -20,18 +26,9 @@ class LocationManager {
 
     lateinit var fusedLocationClient: FusedLocationProviderClient
 
-    var currentLocation: Optional<Location> = Optional(null)
-        set(value) {
-            currentLocationSubject.onNext(value)
-            field = value
-        }
-
-    fun getCurrentLocationObservable(): Observable<Optional<Location>> = currentLocationSubject
-    private val currentLocationSubject =
-        BehaviorSubject.createDefault<Optional<Location>>(currentLocation)
-
 
     lateinit var context: Context
+
     fun requestLocationPermission(appCompatActivity: AppCompatActivity) {
         ActivityCompat.requestPermissions(
             appCompatActivity,
@@ -40,10 +37,10 @@ class LocationManager {
         )
     }
 
-    fun requestLocation(appCompatActivity: AppCompatActivity): Observable<Optional<Location>>? {
-        if (appCompatActivity.checkSelfPermission(Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
-            currentLocation =  Optional(fusedLocationClient.lastLocation.result)
-            return Observable.just(currentLocation)
+
+    fun requestLocation(): Observable<Optional<Location>>? {
+        if (context.checkSelfPermission(Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
+            return Observable.just(Optional(fusedLocationClient.lastLocation.result))
         }
         return null
     }
@@ -52,10 +49,6 @@ class LocationManager {
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(appCompatActivity)
         if (appCompatActivity.checkSelfPermission(Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             requestLocationPermission(appCompatActivity)
-        } else {
-            fusedLocationClient.lastLocation.addOnCompleteListener {
-                currentLocation = Optional(it.result)
-            }
         }
 
         context = appCompatActivity
@@ -82,7 +75,7 @@ class LocationManager {
         return location
     }
 
-//    fun searchCurrentLocation(): Observable<String> {
+    //    fun searchCurrentLocation(): Observable<String> {
 //
 //        var addressList: List<Address> = emptyList()
 //
@@ -99,8 +92,36 @@ class LocationManager {
 //
 //        return addressList.firstOrNull()?.locality
 //    }
+    @SuppressLint("MissingPermission")
+    fun getCurrentLocationObservable(): Observable<Location> {
+        return Observable.create { emitter ->
 
-    fun searchLocationName(location : Location): String? {
+            val completeListener = getOnCompleteListener(emitter)
+            try {
+                fusedLocationClient.lastLocation.addOnSuccessListener {
+                    if (!emitter.isDisposed && it != null) emitter.onNext(it)
+                }
+                val task = fusedLocationClient.lastLocation
+                task.addOnCompleteListener(completeListener)
+            } catch (e: Exception) {
+                emitter.tryOnError(e)
+            }
+        }
+    }
+
+
+    private fun getOnCompleteListener(emitter: ObservableEmitter<Location>): OnCompleteListener<Location> {
+        return OnCompleteListener { task ->
+            if (!task.isSuccessful) {
+                emitter.tryOnError(
+                    task.exception
+                        ?: IllegalStateException("Can't get location from FusedLocationProviderClient")
+                )
+            }
+        }
+    }
+
+    fun searchLocationName(location: Location): String? {
 
         var addressList: List<Address> = emptyList()
 
@@ -121,6 +142,7 @@ class LocationManager {
 }
 
 data class Optional<T>(val value: T?)
+
 fun <T> T?.carry() = Optional(this)
 
 
