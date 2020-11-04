@@ -80,7 +80,7 @@ class MainActivity : AppCompatActivity() {
     }
 
 
-    fun replaceFragment(fragment: BaseFragment) {
+    fun replaceFragment(fragment: Fragment) {
         supportFragmentManager.beginTransaction()
             .replace(R.id.frame, fragment)
             .addToBackStack(fragment.tag)

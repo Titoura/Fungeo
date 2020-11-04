@@ -2,7 +2,6 @@ package com.titou.fungeo.navigation
 
 import androidx.fragment.app.Fragment
 import com.titou.activity.ActivityRouter
-import com.titou.activity.BaseFragment
 import com.titou.activity.MainActivity
 import com.titou.activity.R
 import com.titou.home.HomeFragment
@@ -10,13 +9,13 @@ import com.titou.urgo.locations.LocationsFragment
 import io.reactivex.rxjava3.core.Single
 import kotlin.system.exitProcess
 
-// TODO : When app gets better, create a navigation module
+// TODO : When app gets bigger, create a navigation module
 class RootRouter : ActivityRouter {
 
 
-    lateinit var currentFragment: BaseFragment
+    lateinit var currentFragment: Fragment
 
-    override fun updateDisplayedFragment(menu_item: Int, activity : MainActivity): Single<BaseFragment> = Single.just(
+    override fun updateDisplayedFragment(menu_item: Int, activity : MainActivity): Single<Fragment> = Single.just(
         when (menu_item) {
             R.id.navigation_home ->
                 HomeFragment(activity)

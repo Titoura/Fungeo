@@ -5,6 +5,6 @@ import io.reactivex.rxjava3.core.Single
 
 interface ActivityRouter {
 
-    fun updateDisplayedFragment(menu_item: Int, activity: MainActivity): Single<BaseFragment>
+    fun updateDisplayedFragment(menu_item: Int, activity: MainActivity): Single<Fragment>
     fun handleOnBackPressed()
 }
