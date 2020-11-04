@@ -9,18 +9,21 @@ import io.reactivex.rxjava3.core.Observable
 import org.koin.core.KoinComponent
 
 @Dao
-interface LocationWithNAmeDao : KoinComponent {
+interface LocationWithNameDao : KoinComponent {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insert(vararg locationWithName: LocationWithName) : Completable
 
     @Update
-    fun updateWeather(vararg locationWithName: LocationWithName) : Completable
+    fun update(vararg locationWithName: LocationWithName) : Completable
 
     @Delete
-    fun deleteWeather(vararg locationWithName: LocationWithName) : Completable
+    fun delete(vararg locationWithName: LocationWithName) : Completable
 
-    @Query("SELECT * FROM location_with_name")
+    @Query("SELECT * FROM location_with_name WHERE NOT main")
     fun getAll(): Observable<List<LocationWithName>>
+
+    @Query("SELECT * FROM location_with_name WHERE main LIMIT 1")
+    fun getMainLocation(): Observable<LocationWithName>
 
 }

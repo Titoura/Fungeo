@@ -3,14 +3,14 @@ package com.titou.database
 
 import android.content.Context
 import androidx.room.*
-import com.titou.database.dao.LocationWithNAmeDao
+import com.titou.database.dao.LocationWithNameDao
 import com.titou.database.models.LocationWithName
 import com.titou.database.typeConverters.LocationConverter
 
 @androidx.room.Database(entities = [LocationWithName::class], version = DB_VERSION)
 @TypeConverters(LocationConverter::class)
 abstract class Database : RoomDatabase() {
-    abstract fun locationWithNAmeDao(): LocationWithNAmeDao
+    abstract fun locationWithNAmeDao(): LocationWithNameDao
 
     companion object {
         @Volatile
