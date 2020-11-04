@@ -94,7 +94,7 @@ class MainActivity : AppCompatActivity() {
     ) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
         if (requestCode == resources.getInteger(R.integer.location_permission_request_code) && grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-            locationManager.requestLocation()?.subscribe({
+            locationManager.getCurrentLocationObservable().subscribe({
                 presenter.handleOnBottomMenuItemSelected(R.id.navigation_home, this)
                     .subscribe({
                         replaceFragment(it)

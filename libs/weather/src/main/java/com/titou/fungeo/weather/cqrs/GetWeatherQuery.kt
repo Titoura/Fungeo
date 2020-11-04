@@ -3,7 +3,6 @@ package com.titou.fungeo.weather.cqrs;
 import android.location.Location
 import com.titou.database.models.*
 import com.titou.fungeo.weather.cqrs.api.WeatherApiService
-import com.titou.fungeo.weather.repository.WeatherRepository
 import com.titou.fungeo.weather.serializers.toWeatherModel
 //import com.titou.fungeo.weather.serializers.toWeatherModel
 import io.reactivex.rxjava3.core.Observable

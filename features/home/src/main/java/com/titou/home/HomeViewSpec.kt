@@ -58,7 +58,7 @@ internal object HomeViewSpec {
                         .verticalGravity(VerticalGravity.CENTER)
                         .textAlignment(Layout.Alignment.ALIGN_CENTER)
                         .textColorRes(R.color.white)
-                        .marginRes(YogaEdge.TOP, R.dimen.margin_default)
+                        .marginRes(YogaEdge.TOP, R.dimen.margin_large)
                         .typeface(Typeface.DEFAULT_BOLD)
                         .textSizeDip(40f)
                 )

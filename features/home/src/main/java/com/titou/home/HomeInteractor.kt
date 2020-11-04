@@ -13,7 +13,7 @@ internal class HomeInteractor(
 
     fun fetchWeatherFromServer(location: android.location.Location) = getWeatherQuery.fetchWeatherFromServerAndSave(location)
     fun getLastLocation() = locationManager.getCurrentLocationObservable()
-    fun getCurrentLocationName(location : android.location.Location) = locationManager.searchLocationName(location)
+    fun getCurrentLocationName(location : android.location.Location) = locationManager.searchLocationNameForPosition(location)
    // fun getWeatherFromDatabase(location : Location) = getWeatherQuery.getWeatherFromDatabase(location)
 
 }
