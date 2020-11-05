@@ -69,7 +69,7 @@ class LocationManager() : KoinComponent {
         return LocationWithName(newName, location, countryCode, main)
     }
 
-    // FIXME: Make a stronger request to location so that he location is fetched even f not accessed by another app
+    // TODO: Make a stronger request to location so that he location is fetched even f not accessed by another app
     @SuppressLint("MissingPermission")
     fun getCurrentLocationObservable(): Observable<Location> {
         return Observable.create { emitter ->

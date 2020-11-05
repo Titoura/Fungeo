@@ -1,26 +1,23 @@
 package com.titou.activity
 
-import android.Manifest
+import android.app.Activity
 import android.content.pm.PackageManager
-import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
 import android.view.MenuItem
+import android.view.View
 import android.view.WindowManager
 import android.widget.FrameLayout
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
-import com.google.android.material.bottomnavigation.LabelVisibilityMode
 import com.titou.fungeo.location.LocationManager
 import org.koin.android.ext.android.inject
 import org.koin.androidx.fragment.android.setupKoinFragmentFactory
 import org.koin.androidx.scope.lifecycleScope
 
 
-//TODO: Check if we need to override onBackPressed
 class MainActivity : AppCompatActivity() {
 
 
@@ -55,7 +52,8 @@ class MainActivity : AppCompatActivity() {
                 this,
                 android.R.color.transparent
             )
-        );
+        )
+
         bottomNavigationView.setOnNavigationItemSelectedListener { item: MenuItem ->
             presenter.handleOnBottomMenuItemSelected(item.itemId, this)
                 .map { it }
@@ -73,7 +71,6 @@ class MainActivity : AppCompatActivity() {
 
     }
 
-    //TODO: add butterknife if UI binding becomes to complex
     fun bindViews() {
         frame = findViewById(R.id.frame)
         bottomNavigationView = findViewById(R.id.bottom_navigation_view)
@@ -101,7 +98,24 @@ class MainActivity : AppCompatActivity() {
                     }, {
                         Log.e("MainActivity", it?.localizedMessage ?: "Error")
                     })
-            }, {})
+            }, {})g
         }
     }
+
+    override fun onBackPressed() {
+
+        val seletedItemId = bottomNavigationView.selectedItemId
+        if (R.id.navigation_home != seletedItemId) {
+            bottomNavigationView.selectedItemId = R.id.navigation_home
+            presenter.handleOnBottomMenuItemSelected(R.id.navigation_home, this)
+                .map { it }
+                .subscribe { fragment ->
+                    replaceFragment(fragment)
+                }
+        } else {
+            finish()
+        }
+    }
+
+
 }
