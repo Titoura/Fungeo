@@ -3,6 +3,7 @@ package com.titou.home
 import android.location.Location
 import com.titou.database.models.*
 import io.reactivex.rxjava3.core.Observable
+import io.reactivex.rxjava3.core.Single
 import org.koin.core.KoinComponent
 import java.time.LocalDate
 import java.time.LocalDateTime
@@ -13,49 +14,49 @@ internal class HomePresenter(
 
     private val TAG = "HomePresenter"
 
+    //TODO: Load default location
     fun props(): Observable<Props> {
 
-        return interactor.getLastLocation().flatMap { currentLocation ->
-            currentLocation.let {
-                interactor.fetchWeatherFromServer(it)
-                    .map {
-                        currentLocation?.let { location : Location ->
-                            Props(weather = it, location = location, locationName = interactor.getCurrentLocationName(location)?:"Your weather")
+        return interactor.getDefaultLocation()
+            .flatMap {locationAsAList->
+
+                if(locationAsAList.isEmpty()) {
+                    interactor.getLastLocation().flatMap { currentLocation ->
+                        currentLocation.let {
+                            interactor.fetchWeatherFromServer(it)
+                                .map {
+                                    currentLocation?.let { location: Location ->
+                                        Props(
+                                            weather = it,
+                                            location = location,
+                                            locationName = interactor.getCurrentLocationName(
+                                                location
+                                            )
+                                                ?: "Your weather"
+                                        )
+                                    }
+                                }
                         }
                     }
+                }
+                else{
+                    locationAsAList.first().location?.let {
+                        interactor.fetchWeatherFromServer(it)
+                            .map { weather ->
+                                Props(
+                                        weather = weather,
+                                        location = locationAsAList.first().location,
+                                        locationName = locationAsAList.first().name
+                                )
+                            }
+                    }
+
+                }
             }
-        }
     }
+
 }
 
 
-// FIXME: remove temporary mock, used for dev only
-// TODO: reuse in unit tests
-fun mockProps(): Weather {
-    val longitude = 2.3488f
-    val latitude = 48.8534f
-    val currentWeather = CurrentWeather(
-        LocalDateTime.now(),
-        listOf(WeatherDescription("Sunny", "Sunny")),
-        30f,
-        15f
-    )
-    val weatherForecast = listOf(
-        DatedWeatherForecast(
-            LocalDate.now(),
-            TemperatureForecast(15f, 15f, 15f, 15f),
-            PerceivedTemperatureForecast(15f, 15f),
-            listOf(WeatherDescription("Sunny", "Sunny"))
-        )
-    )
-
-    return Weather(
-        city = "Paris",
-        latitude = latitude,
-        longitude = longitude,
-        currentWeather = currentWeather,
-        weatherForecast = weatherForecast
-    )
-}
 
 

@@ -2,6 +2,7 @@ package com.titou.urgo.locations
 
 import android.util.Log
 import com.titou.database.models.*
+import io.reactivex.rxjava3.core.Maybe
 import io.reactivex.rxjava3.core.Observable
 import io.reactivex.rxjava3.core.Single
 import io.reactivex.rxjava3.kotlin.merge
@@ -30,7 +31,7 @@ internal class LocationsPresenter(
                         )
                     }
 
-            }.merge().toList().flatMap { Single.just(Props(it, false)) }.toObservable()
+            }.merge().toList().flatMapMaybe { Maybe.just(Props(it, false)) }.toObservable()
         }
     }
 

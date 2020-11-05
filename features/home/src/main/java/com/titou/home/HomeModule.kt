@@ -15,7 +15,7 @@ object HomeModule {
 
             scope<HomeFragment> {
                 scoped { HomePresenter(get()) }
-                scoped { HomeInteractor(get(), get()) }
+                scoped { HomeInteractor(get(), get(), get()) }
             }
 
 

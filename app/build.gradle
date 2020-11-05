@@ -48,6 +48,7 @@ dependencies {
     implementation project(":core:location")
     implementation project(":features:home")
     implementation project(":features:locations")
+    implementation project(":features:settings")
     implementation project(":libs:weather")
     implementation runDependencies.kotlin_std_lib
     implementation runDependencies.koin_android

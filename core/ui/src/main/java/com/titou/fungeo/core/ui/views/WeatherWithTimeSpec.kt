@@ -48,7 +48,8 @@ internal object WeatherWithTimeSpec {
         )
         .child(
             Image.create(c).drawableRes(hourlyWeather?.getIconRes()?:R.drawable.ic_cloud)
-                .marginRes(YogaEdge.ALL, R.dimen.margin_default)
+                .widthRes(R.dimen.icon_small)
+                .heightRes(R.dimen.icon_small)
 
 
         )

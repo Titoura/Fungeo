@@ -7,6 +7,7 @@ import com.titou.fungeo.navigation.NavigationModule
 import com.titou.home.HomeModule
 import com.titou.requestscontroller.RetrofitModule
 import com.titou.fungeo.weather.WeatherModule
+import com.titou.fungeo.settings.SettingsModule
 import com.titou.urgo.locations.LocationsModule
 
 object KoinModules {
@@ -19,6 +20,7 @@ object KoinModules {
         WeatherModule.module,
         LocationModule.module,
         DatabaseModule.module,
+        SettingsModule.module,
         LocationsModule.module
 
     )

@@ -2,11 +2,13 @@ package com.titou.home
 
 import com.titou.fungeo.location.LocationManager
 import com.titou.fungeo.weather.cqrs.GetWeatherQuery
+import com.titou.fungeo.weather.repository.LocationWithNameRepository
 import org.koin.core.KoinComponent
 
 internal class HomeInteractor(
     private val getWeatherQuery: GetWeatherQuery,
-    private val locationManager: LocationManager
+    private val locationManager: LocationManager,
+    private val repository: LocationWithNameRepository
 
 ) : KoinComponent {
 
@@ -14,6 +16,6 @@ internal class HomeInteractor(
     fun fetchWeatherFromServer(location: android.location.Location) = getWeatherQuery.fetchWeatherFromServerAndSave(location)
     fun getLastLocation() = locationManager.getCurrentLocationObservable()
     fun getCurrentLocationName(location : android.location.Location) = locationManager.searchLocationNameForPosition(location)
-   // fun getWeatherFromDatabase(location : Location) = getWeatherQuery.getWeatherFromDatabase(location)
+    fun getDefaultLocation() = repository.getDefaultLocation()
 
 }

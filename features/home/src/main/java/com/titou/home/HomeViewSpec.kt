@@ -36,7 +36,7 @@ internal object HomeViewSpec {
         c: ComponentContext,
         @Prop loading: Boolean,
         @Prop weather: Weather?,
-        @Prop locationName: String
+        @Prop locationName: String?
 
     ): Component = Column
         .create(c)
@@ -46,11 +46,18 @@ internal object HomeViewSpec {
         .apply {
             if (loading) {
                 child(
-                    Column.create(c).flex(1F).alignContent(YogaAlign.CENTER)
+                    Column.create(c).heightPercent(50F).alignContent(YogaAlign.CENTER)
                         .justifyContent(YogaJustify.CENTER).child(
                             AnimationView.create(c).rawRes(R.raw.loader_animation)
                                 .alignSelf(YogaAlign.CENTER).widthDip(200f).heightDip(200f)
                         )
+                )
+                child(
+                    Text.create(c).textRes(com.titou.home.R.string.loading_msg)
+                        .alignSelf(YogaAlign.CENTER)
+                        .textColorRes(R.color.white).heightPercent(50F)
+                        .verticalGravity(VerticalGravity.CENTER)
+                        .marginRes(YogaEdge.ALL, R.dimen.margin_xlarge)
                 )
             } else {
                 child(
@@ -83,13 +90,6 @@ internal object HomeViewSpec {
                         .typeface(Typeface.DEFAULT_BOLD)
                 )
 
-//        .child(
-//            TextClockView.create(c).textColorRes(R.color.white)
-//                .alignSelf(YogaAlign.CENTER)
-//                .heightDip(88f)
-//                .widthDip(144f)
-//
-//        )
                 child(
                     Row.create(c).paddingRes(YogaEdge.HORIZONTAL, R.dimen.margin_large)
                         .justifyContent(YogaJustify.SPACE_EVENLY).apply {

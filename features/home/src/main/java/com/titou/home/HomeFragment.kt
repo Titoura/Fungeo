@@ -82,7 +82,7 @@ class HomeFragment(parentActivity: AppCompatActivity) : Fragment() {
 }
 
 data class Props(
-    val weather: Weather,
-    val location: Location,
+    val weather: Weather?,
+    val location: Location?,
     val locationName: String
 )
