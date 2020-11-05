@@ -1,3 +1,4 @@
+include ':features:settings'
 include ':features:locations'
 include ':core:location'
 include ':libs:weather'
