@@ -1,5 +1,6 @@
 package com.titou.urgo.locations
 
+import android.view.View
 import com.facebook.litho.Component
 import com.facebook.litho.ComponentContext
 import com.facebook.litho.annotations.LayoutSpec
@@ -29,7 +30,7 @@ object LocationsWeatherListSpec {
     @OnCreateLayout
     fun onCreateLayout(c: ComponentContext, @Prop weatherList: List<LocationWithNameAndWeather>): Component {
 
-        return RecyclerCollectionComponent.create(c)
+        return RecyclerCollectionComponent.create(c).overScrollMode(View.OVER_SCROLL_NEVER).disablePTR(true)
             .recyclerConfiguration(
                 ListRecyclerConfiguration.create()
                     .recyclerBinderConfiguration(

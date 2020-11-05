@@ -44,7 +44,7 @@ class GetWeatherQuery(
             }
     }
 
-    // FIXME: remove temporary mock, used for dev only
+    // TODO: remove temporary mock, used for dev only
     // TODO: reuse in unit tests
     fun mockProps(): Weather {
         val longitude = 2.3488f

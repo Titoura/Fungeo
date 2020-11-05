@@ -1,5 +1,6 @@
 package com.titou.home
 
+import android.view.View
 import com.facebook.litho.Component
 import com.facebook.litho.ComponentContext
 import com.facebook.litho.annotations.LayoutSpec
@@ -30,7 +31,7 @@ object DailyWeatherListSpec {
     @OnCreateLayout
     fun onCreateLayout(c: ComponentContext, @Prop dailyWeatherList: List<DatedWeatherForecast>): Component {
 
-        return RecyclerCollectionComponent.create(c)
+        return RecyclerCollectionComponent.create(c).overScrollMode(View.OVER_SCROLL_IF_CONTENT_SCROLLS).disablePTR(true)
             .recyclerConfiguration(
                 ListRecyclerConfiguration.create()
                     .recyclerBinderConfiguration(

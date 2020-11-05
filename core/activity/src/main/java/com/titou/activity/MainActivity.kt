@@ -98,7 +98,7 @@ class MainActivity : AppCompatActivity() {
                     }, {
                         Log.e("MainActivity", it?.localizedMessage ?: "Error")
                     })
-            }, {})g
+            }, {})
         }
     }
 
