@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools">
     <string name="today">Today</string>
+    <string name="unknown">Unknown</string>
+    <string name="your_weather">Your weather</string>
     <string name="loading_msg">If you have troubles seeing this page,\nPlease (re)enter a default location\nin the settings</string>
 </resources>

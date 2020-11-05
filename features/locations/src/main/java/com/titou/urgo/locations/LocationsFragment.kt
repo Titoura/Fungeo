@@ -68,7 +68,7 @@ class LocationsFragment(parentActivity: AppCompatActivity) : Fragment() {
     }
 
     override fun onDestroy() {
-        propDisposable?.dispose()
+        propDisposable.dispose()
         super.onDestroy()
     }
 }

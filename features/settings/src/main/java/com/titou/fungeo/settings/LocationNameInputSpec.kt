@@ -54,7 +54,7 @@ object LocationNameInputSpec {
                             .inputType(InputType.TYPE_TEXT_FLAG_CAP_WORDS)
                             .let {
                                 if (text.isNotEmpty()) it else
-                                    it.paddingDip(YogaEdge.RIGHT, 16f)
+                                    it.paddingRes(YogaEdge.RIGHT, R.dimen.padding_large)
                             }
                             .flex(1F)
                             .hintColorStateList(ColorStateList.valueOf(c.getColor(R.color.white_60)))
@@ -77,7 +77,7 @@ object LocationNameInputSpec {
                                     Image
                                         .create(c)
                                         .drawableRes(R.drawable.ic_clear)
-                                        .paddingDip(YogaEdge.HORIZONTAL, 16F)
+                                        .paddingRes(YogaEdge.HORIZONTAL, R.dimen.padding_large)
                                         .clickHandler(LocationNameInput.onClearClick(c, inputKey))
                                 )
                     }

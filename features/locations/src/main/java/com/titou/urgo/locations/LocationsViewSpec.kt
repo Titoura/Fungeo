@@ -25,7 +25,7 @@ internal object LocationsViewSpec {
     ): Component = Column
         .create(c)
         .flex(1F)
-        .paddingDip(YogaEdge.VERTICAL, 24f)
+        .paddingRes(YogaEdge.VERTICAL, R.dimen.padding_xlarge)
         .paddingRes(YogaEdge.HORIZONTAL, R.dimen.padding_default)
         .child(
             Text.create(c).textRes(com.titou.urgo.locations.R.string.your_locations)
@@ -34,7 +34,7 @@ internal object LocationsViewSpec {
                 .marginRes(YogaEdge.TOP, R.dimen.margin_large)
                 .typeface(Typeface.DEFAULT_BOLD)
                 .widthPercent(100F)
-                .textSizeDip(40f)
+                .textSizeRes(R.dimen.h1)
                 .marginRes(YogaEdge.BOTTOM, R.dimen.margin_xlarge)
         )
 
@@ -44,7 +44,7 @@ internal object LocationsViewSpec {
                     Column.create(c).flex(1F).alignContent(YogaAlign.CENTER)
                         .justifyContent(YogaJustify.CENTER).child(
                             AnimationView.create(c).rawRes(R.raw.loader_animation)
-                                .alignSelf(YogaAlign.CENTER).widthDip(200f).heightDip(200f)
+                                .alignSelf(YogaAlign.CENTER).widthRes(R.dimen.loader_size).heightRes(R.dimen.loader_size)
                         )
                 )
             } else {

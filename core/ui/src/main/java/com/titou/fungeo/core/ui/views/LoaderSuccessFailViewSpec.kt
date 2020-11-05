@@ -37,62 +37,12 @@ object LoaderSuccessFailViewSpec {
     ) {
         animationView.setAnimation(rawRes)
 
-//        if (status == Status.LOADING) {
-//            animationView.removeAllAnimatorListeners()
-//            animationView.repeatCount = 0
-//            hideLoader(false)
-//        } else {
         animationView.repeatMode = LottieDrawable.RESTART
         animationView.repeatCount = LottieDrawable.INFINITE
-//        animationView.setComposition(LottieComposition().)
-//            animationView.addAnimatorListener {
-//
-//            }
-//                hideLoader(true)
-//            }
-//        }
-
         animationView.setMinFrame(status.minFrame)
         animationView.setMaxFrame(status.maxFrame)
 
         animationView.playAnimation()
-
-//        animationView.addAnimatorListener(AnimatorListenerAdapter(
-//            onStart = { startRecordingDroppedFrames() },
-//            onEnd = {
-//                recordDroppedFrames()
-//                postUpdatePlayButtonText()
-//                animationView.performanceTracker?.logRenderTimes()
-//            },
-//            onCancel = { postUpdatePlayButtonText() },
-//            onRepeat = {
-//                animationView.performanceTracker?.logRenderTimes()
-//                animationView.performanceTracker?.clearRenderTimes()
-//                recordDroppedFrames()
-//                startRecordingDroppedFrames()
-//            }
-//        ))
-//        //TODO: Check depreciation
-//        LottieComposition.Factory.fromAssetFileName(c.androidContext, c.resources.openRawResource(rawRes)
-//            .bufferedReader().use { it.readText() }) { composition ->
-//            if (composition == null) {
-//                throw NullPointerException("")
-//            } else {
-//                setComposition(composition, "comp_0")
-//            }
-//        }
-//
-//
-//    }
-
-
     }
 }
 
-//private fun setComposition(composition: LottieComposition, name: Stirng) {
-//    if (composition.hasImages() && TextUtils.isEmpty(animationView.imageAssetsFolder)) {
-//        Log.e(TAG, "This animation has images and no image folder was set")
-//        return
-//    }
-//    animationView.setComposition(composition)
-//}

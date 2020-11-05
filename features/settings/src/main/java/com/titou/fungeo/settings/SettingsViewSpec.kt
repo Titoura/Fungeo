@@ -6,11 +6,8 @@ import com.facebook.litho.*
 import com.facebook.litho.annotations.*
 import com.facebook.litho.widget.Image
 import com.facebook.litho.widget.Text
-import com.facebook.litho.widget.TextInput
 import com.facebook.litho.widget.VerticalGravity
-import com.facebook.yoga.YogaAlign
 import com.facebook.yoga.YogaEdge
-import com.facebook.yoga.YogaJustify
 import com.titou.database.models.LocationWithName
 import com.titou.ui.R
 
@@ -27,7 +24,7 @@ internal object SettingsViewSpec {
     ): Component = Column
         .create(c)
         .flex(1F)
-        .paddingDip(YogaEdge.VERTICAL, 24f)
+        .paddingRes(YogaEdge.VERTICAL, R.dimen.padding_xlarge)
         .paddingRes(YogaEdge.HORIZONTAL, R.dimen.padding_default)
         .child(
             Text.create(c).textRes(com.titou.fungeo.settings.R.string.settings)
@@ -36,7 +33,7 @@ internal object SettingsViewSpec {
                 .marginRes(YogaEdge.TOP, R.dimen.margin_large)
                 .typeface(Typeface.DEFAULT_BOLD)
                 .widthPercent(100F)
-                .textSizeDip(40f)
+                .textSizeRes(R.dimen.h1)
                 .marginRes(YogaEdge.BOTTOM, R.dimen.margin_xlarge)
         ).child(
             Text.create(c)
@@ -45,7 +42,7 @@ internal object SettingsViewSpec {
                 .marginRes(YogaEdge.BOTTOM, R.dimen.margin_large)
                 .textColorRes(R.color.white)
                 .typeface(Typeface.DEFAULT_BOLD)
-                .textSizeDip(20F)
+                .textSizeRes(R.dimen.p1)
         ).child(
             Row.create(c)
                 .apply {
@@ -58,7 +55,7 @@ internal object SettingsViewSpec {
                                 .marginRes(YogaEdge.BOTTOM, R.dimen.margin_large)
                                 .verticalGravity(VerticalGravity.CENTER)
                                 .marginRes(YogaEdge.HORIZONTAL, R.dimen.margin_large)
-                                .textSizeDip(16f)
+                                .textSizeRes(R.dimen.p3)
                         )
                     } else {
                         child(
@@ -68,13 +65,13 @@ internal object SettingsViewSpec {
                                 .marginRes(YogaEdge.BOTTOM, R.dimen.margin_large)
                                 .verticalGravity(VerticalGravity.CENTER)
                                 .marginRes(YogaEdge.HORIZONTAL, R.dimen.margin_large)
-                                .textSizeDip(16f)
+                                .textSizeRes(R.dimen.p3)
                         )
                         child(
                             Image
                                 .create(c)
                                 .drawableRes(com.titou.fungeo.settings.R.drawable.ic_clear)
-                                .paddingDip(YogaEdge.HORIZONTAL, 16F)
+                                .paddingRes(YogaEdge.HORIZONTAL, R.dimen.padding_default)
                                 .clickHandler(
                                     SettingsView.onRemoveClick(
                                         c
@@ -92,7 +89,7 @@ internal object SettingsViewSpec {
                 .marginRes(YogaEdge.BOTTOM, R.dimen.margin_large)
                 .textColorRes(R.color.white)
                 .typeface(Typeface.DEFAULT_BOLD)
-                .textSizeDip(20F)
+                .textSizeRes(R.dimen.p1)
         )
         .child(
             LocationNameInput.create(c)

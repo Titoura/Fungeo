@@ -45,7 +45,7 @@ object LocationWeatherItemSpec {
                     .customEllipsisText(".")
                     .typeface(Typeface.DEFAULT_BOLD)
                     .isSingleLine(true)
-                    .textSizeDip(20F)
+                    .textSizeRes(com.titou.ui.R.dimen.p1)
 
             )
             .child(
@@ -60,7 +60,7 @@ object LocationWeatherItemSpec {
                             )
                             .widthDip(88f)
                             .marginRes(YogaEdge.RIGHT, R.dimen.margin_large)
-                            .textSizeDip(16F)
+                            .textSizeRes(R.dimen.p2)
 
 
                     )

@@ -44,7 +44,7 @@ object LocationNameInputSpec {
 
         return Row
             .create(c)
-            .paddingDip(YogaEdge.LEFT, 16f)
+            .paddingRes(YogaEdge.LEFT, R.dimen.padding_large)
             .child(
                 Row.create(c)
                     .marginRes(YogaEdge.RIGHT, R.dimen.margin_large)
@@ -62,7 +62,7 @@ object LocationNameInputSpec {
                             .inputFilters(inputFilters ?: emptyList())
                             .let {
                                 if (text.isNotEmpty()) it else
-                                    it.paddingDip(YogaEdge.RIGHT, 16f)
+                                    it.paddingRes(YogaEdge.RIGHT, R.dimen.padding_large)
                             }
                             .flex(1F)
                             .hintColorStateList(ColorStateList.valueOf(c.getColor(R.color.white_60)))
@@ -85,15 +85,16 @@ object LocationNameInputSpec {
                                     Image
                                         .create(c)
                                         .drawableRes(R.drawable.ic_clear)
-                                        .paddingDip(YogaEdge.HORIZONTAL, 16F)
+                                        .paddingRes(YogaEdge.HORIZONTAL, R.dimen.padding_large)
                                         .clickHandler(LocationNameInput.onClearClick(c, inputKey))
                                 )
                     }
             )
             .child(
                 if (text.isEmpty()) {
-                    Image.create(c).widthDip(40f)
-                        .heightDip(40f)
+                    Image.create(c)
+                        .widthRes(R.dimen.icon_small)
+                        .heightRes(R.dimen.icon_small)
                         .alpha(0.6F)
                         .drawableRes(R.drawable.ic_plus)
                 } else if (isLoadingVisible) {
@@ -105,7 +106,8 @@ object LocationNameInputSpec {
                             else
                                 LoaderSuccessFailViewSpec.Status.SUCCESS
                         )
-                        .widthDip(40f).heightDip(40f)
+                        .widthRes(R.dimen.icon_small)
+                        .heightRes(R.dimen.icon_small)
                         .hideLoader { isVisible ->
                             LocationNameInput.onUpdateLoader(
                                 c,

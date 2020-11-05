@@ -28,7 +28,7 @@ object TextClockViewSpec {
         @Prop textColorRes: Int
     ) {
         textClock.setTextColor(c.getColor(textColorRes))
-        textClock.textSize = 32f
+        textClock.textSize = c.resources.getDimension(R.dimen.h2)
         textClock.textAlignment = View.TEXT_ALIGNMENT_CENTER
     }
 }

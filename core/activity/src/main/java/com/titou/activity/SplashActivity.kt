@@ -13,7 +13,7 @@ class SplashActivity : AppCompatActivity() {
 
 
     /** Duration of wait  */
-    private val SPLASH_DISPLAY_LENGTH = 1000L
+    private val SPLASH_DISPLAY_LENGTH = 600L
 
     /** Called when the activity is first created.
      * *
@@ -27,10 +27,9 @@ class SplashActivity : AppCompatActivity() {
         window.setFlags(
             WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS,
             WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS
-        );
+        )
 
-        /* New Handler to start the Menu-Activity
-         * and close this Splash-Screen after some seconds.*/Handler().postDelayed(Runnable { /* Create an Intent that will start the Menu-Activity. */
+        Handler().postDelayed(Runnable { /* Create an Intent that will start the Menu-Activity. */
             startActivity(Intent(this, MainActivity::class.java))
             finish()
         }, SPLASH_DISPLAY_LENGTH)

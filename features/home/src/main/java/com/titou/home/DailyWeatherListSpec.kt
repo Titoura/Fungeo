@@ -29,14 +29,17 @@ import com.titou.database.models.DatedWeatherForecast
 object DailyWeatherListSpec {
 
     @OnCreateLayout
-    fun onCreateLayout(c: ComponentContext, @Prop dailyWeatherList: List<DatedWeatherForecast>): Component {
+    fun onCreateLayout(
+        c: ComponentContext,
+        @Prop dailyWeatherList: List<DatedWeatherForecast>
+    ): Component {
 
-        return RecyclerCollectionComponent.create(c).overScrollMode(View.OVER_SCROLL_IF_CONTENT_SCROLLS).disablePTR(true)
+        return RecyclerCollectionComponent.create(c)
+            .overScrollMode(View.OVER_SCROLL_IF_CONTENT_SCROLLS).disablePTR(true)
             .recyclerConfiguration(
                 ListRecyclerConfiguration.create()
                     .recyclerBinderConfiguration(
                         RecyclerBinderConfiguration.create()
-                            .hasDynamicItemHeight(true) // This enables dynamic height measurement.
                             .wrapContent(true)
                             .build()
                     ).build()
@@ -52,16 +55,16 @@ object DailyWeatherListSpec {
     }
 
     @OnEvent(RenderEvent::class)
-    fun onRender(c: ComponentContext, @FromEvent model: DatedWeatherForecast, @FromEvent index: Int): RenderInfo {
+    fun onRender(
+        c: ComponentContext,
+        @FromEvent model: DatedWeatherForecast,
+        @FromEvent index: Int
+    ): RenderInfo {
         return ComponentRenderInfo.create()
             .component(
                 DailyWeatherItem.create(c)
                     .dailyWeather(model)
                     .widthPercent(100F)
-                    .collapseHeight(50f)
-                    .expandHeight(250f)
-                    .initialHeight(50f)
-                    .widthDip(100f)
             )
             .build()
     }

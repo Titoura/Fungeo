@@ -41,7 +41,7 @@ internal object HomeViewSpec {
     ): Component = Column
         .create(c)
         .flex(1F)
-        .paddingDip(YogaEdge.VERTICAL, 24f)
+        .paddingRes(YogaEdge.VERTICAL, R.dimen.padding_xlarge)
         .paddingRes(YogaEdge.HORIZONTAL, R.dimen.padding_default)
         .apply {
             if (loading) {
@@ -49,12 +49,15 @@ internal object HomeViewSpec {
                     Column.create(c).heightPercent(50F).alignContent(YogaAlign.CENTER)
                         .justifyContent(YogaJustify.CENTER).child(
                             AnimationView.create(c).rawRes(R.raw.loader_animation)
-                                .alignSelf(YogaAlign.CENTER).widthDip(200f).heightDip(200f)
+                                .alignSelf(YogaAlign.CENTER)
+                                .widthRes(com.titou.home.R.dimen.loader_size)
+                                .widthRes(com.titou.home.R.dimen.loader_size)
                         )
                 )
                 child(
                     Text.create(c).textRes(com.titou.home.R.string.loading_msg)
                         .alignSelf(YogaAlign.CENTER)
+                        .textAlignment(Layout.Alignment.ALIGN_CENTER)
                         .textColorRes(R.color.white).heightPercent(50F)
                         .verticalGravity(VerticalGravity.CENTER)
                         .marginRes(YogaEdge.ALL, R.dimen.margin_xlarge)
@@ -67,15 +70,15 @@ internal object HomeViewSpec {
                         .textColorRes(R.color.white)
                         .marginRes(YogaEdge.TOP, R.dimen.margin_large)
                         .typeface(Typeface.DEFAULT_BOLD)
-                        .textSizeDip(40f)
+                        .textSizeRes(R.dimen.h1)
                 )
 
                 child(
                     Image.create(c).drawableRes(
                         weather?.currentWeather?.getIconRes() ?: R.drawable.ic_cloud
                     )
-                        .widthDip(80f)
-                        .heightDip(80f)
+                        .widthRes(R.dimen.icon_large)
+                        .widthRes(R.dimen.icon_large)
                         .alignSelf(YogaAlign.CENTER)
                         .marginRes(YogaEdge.VERTICAL, R.dimen.margin_default)
 
@@ -86,7 +89,7 @@ internal object HomeViewSpec {
                         .marginRes(YogaEdge.VERTICAL, R.dimen.margin_small)
                         .textColorRes(R.color.white)
                         .textAlignment(Layout.Alignment.ALIGN_CENTER)
-                        .textSizeDip(32f)
+                        .textSizeRes(R.dimen.h2)
                         .typeface(Typeface.DEFAULT_BOLD)
                 )
 
@@ -121,5 +124,4 @@ fun getFiveNextHours(hourlyWeathersList: List<HourlyWeather>?): List<HourlyWeath
     if (hourlyWeathersList == null) return emptyList()
     val fiveNextTimes = listOf(3, 7, 11, 15, 19, 23)
     return fiveNextTimes.map { hourlyWeathersList.getOrNull(it) }.requireNoNulls()
-        ?: emptyList()
 }

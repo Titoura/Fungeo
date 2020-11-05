@@ -52,7 +52,7 @@ class HomeFragment(parentActivity: AppCompatActivity) : Fragment() {
 
         val lithoView = LithoView.create(
             c,
-            createView(true, null, "Test")
+            createView(true, null, getString(R.string.unknown))
                 .build()
         )
 
@@ -76,7 +76,7 @@ class HomeFragment(parentActivity: AppCompatActivity) : Fragment() {
     }
 
     override fun onDestroy() {
-        propDisposable?.dispose()
+        propDisposable.dispose()
         super.onDestroy()
     }
 }

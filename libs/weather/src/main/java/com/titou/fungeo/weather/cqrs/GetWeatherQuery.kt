@@ -15,24 +15,14 @@ class GetWeatherQuery(
     private val api : WeatherApiService
 ) : KoinComponent {
 
-
-//
-//    fun getWeatherFromDatabase(location : Location): Observable<Weather>? {
-//        return weatherRepository
-//            .getWeatherForLocation(location)
-//    }
-//
-//    fun getAllWeathersFromDatabase(): Observable<List<Weather>>? {
-//        return weatherRepository
-//            .getAllWeathers()
-//    }
+    //FIXME: extract api key
+    private val API_KEY = "32349591b103bde8f9faa1809035c44e"
 
     fun fetchWeatherFromServerAndSave(location: Location): Observable<Weather> {
-//        return Observable.just(mockProps())
         return api.getWeatherForLocation(
             longitude = location.longitude.toFloat(),
             latitude = location.latitude.toFloat(),
-            api_key = "32349591b103bde8f9faa1809035c44e",
+            api_key = API_KEY,
             exclusions = ""
         )
             .map {

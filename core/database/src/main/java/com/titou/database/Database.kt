@@ -16,7 +16,7 @@ abstract class Database : RoomDatabase() {
         @Volatile
         private var databseInstance: Database? = null
 
-        fun getDatabasenIstance(mContext: Context): Database =
+        fun getDatabaseInstance(mContext: Context): Database =
             databseInstance ?: synchronized(this) {
                 databseInstance ?: buildDatabaseInstance(mContext).also {
                     databseInstance = it
