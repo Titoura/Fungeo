@@ -5,6 +5,7 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 import com.titou.database.R
 import java.time.LocalDateTime
+import java.time.ZoneId
 
 data class CurrentWeather(
     val dateTime: LocalDateTime,
@@ -13,20 +14,21 @@ data class CurrentWeather(
     val perceivedTemperature: Float
 ){
 
-    //TODO: Add night icons
     fun getIconRes(): Int {
+        val now = LocalDateTime.now(ZoneId.systemDefault())
         return with(weatherDescriptions.first().main) {
             when {
                 this == null -> R.drawable.ic_cloud
-                this.contains("Clear") -> R.drawable.ic_sun
+                this.contains("Clear") && now.hour in 8..18 -> R.drawable.ic_sun
+                this.contains("Clear") -> R.drawable.ic_moon
                 this.contains("Clouds") -> R.drawable.ic_cloud
                 this.contains("Snow") -> R.drawable.ic_snow
                 this.contains("Rain") -> R.drawable.ic_rain
                 this.contains("Thunderstorm") -> R.drawable.ic_thunderstorm
                 else -> R.drawable.ic_cloud
-
             }
         }
     }
+
 
 }
