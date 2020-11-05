@@ -1,44 +1,24 @@
-plugins {
-    id 'com.android.library'
-    id 'kotlin-android'
-}
-
-android {
-    compileSdkVersion 30
-    buildToolsVersion "30.0.2"
-
-    defaultConfig {
-        minSdkVersion 16
-        targetSdkVersion 30
-        versionCode 1
-        versionName "1.0"
-
-        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
-        consumerProguardFiles "consumer-rules.pro"
-    }
-
-    buildTypes {
-        release {
-            minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
-        }
-    }
-    compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
-    }
-    kotlinOptions {
-        jvmTarget = '1.8'
-    }
-}
+apply from: "$rootDir/gradle/base.gradle"
+apply plugin: 'kotlin-kapt'
 
 dependencies {
+    implementation project(':core:database')
+    implementation project(':core:activity')
+    implementation project(':core:ui')
+    implementation project(':core:location')
+    implementation project(':libs:weather')
 
-    implementation "org.jetbrains.kotlin:kotlin-stdlib:${versions.kotlin}"
-    implementation 'androidx.core:core-ktx:1.3.2'
-    implementation 'androidx.appcompat:appcompat:1.2.0'
-    implementation 'com.google.android.material:material:1.2.1'
-    testImplementation 'junit:junit:4.+'
-    androidTestImplementation 'androidx.test.ext:junit:1.1.2'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
+    // Litho
+    implementation runDependencies.litho_core
+    implementation runDependencies.litho_widget
+    kapt runDependencies.litho_annotation_processor
+
+    implementation runDependencies.swiperefreshlayout
+    implementation runDependencies.play_services_location
+
+
+    implementation runDependencies.litho_sections_core
+    implementation runDependencies.litho_sections_widget
+    kapt runDependencies.litho_sections_annotations_processor
+
 }
