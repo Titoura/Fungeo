@@ -1,0 +1,13 @@
+apply from: "$rootDir/gradle/base.gradle"
+
+dependencies{
+    implementation runDependencies."lottie"
+    implementation runDependencies."androidx_constraintlayout"
+    implementation project(':entities')
+    implementation project(':use_cases')
+
+    implementation runDependencies.litho_sections_core
+    implementation runDependencies.litho_sections_widget
+    implementation runDependencies.material
+    kapt runDependencies.litho_sections_annotations_processor
+}

@@ -1,27 +1,22 @@
 package com.titou.fungeo
 
-import com.titou.activity.ActivityModule
-import com.titou.database.DatabaseModule
-import com.titou.fungeo.location.LocationModule
-import com.titou.fungeo.navigation.NavigationModule
-import com.titou.home.HomeModule
-import com.titou.requestscontroller.RetrofitModule
-import com.titou.fungeo.weather.WeatherModule
-import com.titou.fungeo.settings.SettingsModule
-import com.titou.urgo.locations.LocationsModule
+import com.fungeo.presentation.di.*
+import com.titou.data_source.di.DatabaseModule
+import com.titou.data_source.di.DeviceLocationModule
+import com.titou.data_source.di.WeatherApiModule
+import com.titou.use_cases.di.UseCasesModule
 
 object KoinModules {
 
     fun toList() = listOf(
         ActivityModule.module,
-        HomeModule.module,
-        NavigationModule.module,
-        RetrofitModule.module,
-        WeatherModule.module,
-        LocationModule.module,
         DatabaseModule.module,
+        DeviceLocationModule.module,
+        HomeModule.module,
+        LocationsModule.module,
+        NavigationModule.module,
         SettingsModule.module,
-        LocationsModule.module
-
+        WeatherApiModule.module,
+        UseCasesModule.module
     )
 }

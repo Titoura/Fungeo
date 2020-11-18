@@ -1,6 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources>
-
-    <dimen name="daily_weather_icon_size">40dp</dimen>
-    <dimen name="icon_small">32dp</dimen>
-</resources>

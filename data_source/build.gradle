@@ -1,0 +1,28 @@
+apply from: "$rootDir/gradle/base.gradle"
+
+
+dependencies{
+    implementation project(":entities")
+    implementation project(":use_cases")
+
+    // Room, for local persistence
+    implementation runDependencies.room_runtime
+    kapt runDependencies.room_compiler
+    implementation runDependencies.room_ktx
+    implementation runDependencies.room_rxjava3
+    implementation runDependencies.rx_android
+    implementation runDependencies.rx_kotlin
+
+    // Retrofit, for api requests
+    implementation runDependencies.retrofit
+    implementation runDependencies.retrofit_gson_converter
+    implementation runDependencies.retrofit_rx_adapter
+
+    // Gson, used to map json data
+    implementation runDependencies.google_gson
+
+    // Android library used for geocoding
+    implementation runDependencies.play_services_location
+
+
+}

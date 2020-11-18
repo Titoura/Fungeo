@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources>
-    <string name="settings">Settings</string>
-    <string name="home_location">Main location</string>
-    <string name="your_current_default_location">Your default location</string>
-    <string name="set_a_default_location">Set a default location</string>
-    <string name="no_default_location">No default location set</string>
-    <string name="add_your_location">Enter a location</string>
-</resources>

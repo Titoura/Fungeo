@@ -1,6 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="CompilerConfiguration">
-    <bytecodeTargetLevel target="1.8" />
+    <bytecodeTargetLevel target="1.8">
+      <module name="Fungeo.core.activity" target="1.8" />
+      <module name="Fungeo.features.home" target="1.8" />
+      <module name="Fungeo.features.locations" target="1.8" />
+      <module name="Fungeo.features.settings" target="1.8" />
+      <module name="ui" target="1.8" />
+    </bytecodeTargetLevel>
   </component>
 </project>

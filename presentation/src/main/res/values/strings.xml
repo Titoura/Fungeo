@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="title_home">Home</string>
+    <string name="title_locations">Locations</string>
+    <string name="title_settings">Settings</string>
+
+    <string name="today">Today</string>
+    <string name="your_locations">Your com.fungeo.presentation.locations</string>
+    <string name="add_a_location">Add a location</string>
+
+    <string name="settings">Settings</string>
+    <string name="your_current_default_location">Your current default location</string>
+    <string name="no_default_location">No default location set</string>
+    <string name="set_a_default_location">Set a default location</string>
+
+    <string name="unknown">Unknown</string>
+    <string name="loading_msg">If this operation takes too long\nplease set a default location in the settings.</string>
+</resources>

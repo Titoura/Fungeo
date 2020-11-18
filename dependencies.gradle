@@ -3,7 +3,7 @@ ext {
 
     // Versions sorted alphabetically
     versions = [
-            android_gradle_plugin    : '4.1.0',
+            android_gradle_plugin    : '4.1.1',
             androidx_appcompat       : "1.1.0",
             androidx_core            : "1.3.1",
             androidx_test_junit      : "1.1.2",
@@ -33,7 +33,7 @@ ext {
             build_tools: "29.0.2",
             compile    : 29,
             target     : 30,
-            min        : 29
+            min        : 23
     ]
 
     javaVersion = JavaVersion.VERSION_1_8
@@ -64,8 +64,8 @@ ext {
             litho_sections_annotations_processor: "com.facebook.litho:litho-sections-processor:${versions.litho}",
             lottie                              : "com.airbnb.android:lottie:${versions.lottie}",
             material                            : "com.google.android.material:material:${versions.material}",
-            navigation_fragment                 : "androidx.navigation:navigation-fragment:${versions.navigation}",
-            navigation_ui                       : "androidx.navigation:navigation-ui:${versions.navigation}",
+            navigation_fragment                 : "androidx.com.fungeo.presentation.navigation:com.fungeo.presentation.navigation-fragment:${versions.navigation}",
+            navigation_ui                       : "androidx.com.fungeo.presentation.navigation:com.fungeo.presentation.navigation-ui:${versions.navigation}",
             play_services_location              : "com.google.android.gms:play-services-location:${versions.play_services_location}",
             retrofit                            : "com.squareup.retrofit2:retrofit:${versions.retrofit}",
             retrofit_rx_adapter                 : "com.squareup.retrofit2:adapter-rxjava3:${versions.retrofit_rx_adapter}",
