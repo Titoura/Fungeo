@@ -87,7 +87,12 @@ object LocationNameInputSpec {
                     .heightRes(R.dimen.daily_weather_icon_size)
                     .clickHandler(LocationNameInput.onTextValidated(c, text, inputKey))
                     .scaleType(ImageView.ScaleType.FIT_CENTER)
-                    .alpha(1F)
+                    .alpha(
+                        if (text.isEmpty())
+                            0.5f
+                        else
+                            1F
+                    )
                     .drawableRes(R.drawable.ic_check)
 
 

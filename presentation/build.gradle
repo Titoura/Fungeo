@@ -3,6 +3,8 @@ apply from: "$rootDir/gradle/base.gradle"
 dependencies{
     implementation runDependencies."lottie"
     implementation runDependencies."androidx_constraintlayout"
+    implementation runDependencies."swiperefreshlayout"
+
     implementation project(':entities')
     implementation project(':use_cases')
 

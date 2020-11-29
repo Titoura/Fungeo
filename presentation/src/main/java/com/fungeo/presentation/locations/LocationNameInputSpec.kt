@@ -10,6 +10,7 @@ import com.facebook.litho.annotations.*
 import com.facebook.litho.widget.*
 import com.facebook.yoga.YogaAlign
 import com.facebook.yoga.YogaEdge
+import com.facebook.yoga.YogaJustify
 import com.fungeo.presentation.R
 import com.fungeo.presentation.ui.components.LoaderSuccessFailView
 import com.fungeo.presentation.ui.components.LoaderSuccessFailViewSpec
@@ -93,9 +94,7 @@ object LocationNameInputSpec {
             .child(
                 if (text.isEmpty()) {
                     Image.create(c)
-                        .widthRes(R.dimen.icon_small)
-                        .heightRes(R.dimen.icon_small)
-                        .alpha(0.6F)
+                        .alpha(0.5F)
                         .drawableRes(R.drawable.ic_plus)
                 } else if (isLoadingVisible) {
                     LoaderSuccessFailView.create(c)
@@ -116,11 +115,7 @@ object LocationNameInputSpec {
                         }
                 } else {
                     Image.create(c)
-                        .marginRes(YogaEdge.LEFT, R.dimen.margin_large)
-                        .widthRes(R.dimen.daily_weather_icon_size)
-                        .heightRes(R.dimen.daily_weather_icon_size)
                         .clickHandler(LocationNameInput.onTextValidated(c, text))
-                        .scaleType(ImageView.ScaleType.FIT_CENTER)
                         .alpha(1F)
                         .drawableRes(R.drawable.ic_plus)
                 }

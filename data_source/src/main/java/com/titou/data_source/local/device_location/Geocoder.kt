@@ -5,11 +5,12 @@ import android.location.Address
 import android.location.Geocoder
 import android.location.Location
 import org.koin.core.KoinComponent
+import org.koin.core.inject
 import java.io.IOException
 
 class Geocoder : KoinComponent{
 
-    lateinit var context: Context
+    private val context : Context by inject()
 
     fun searchLocationNameForPosition(location: Location): String? {
 

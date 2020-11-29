@@ -27,11 +27,6 @@ import com.fungeo.presentation.ui.components.WeatherWithTime
 @LayoutSpec
 internal object HomeViewSpec {
 
-    val colors =
-        listOf(
-            Color.BLACK, Color.BLUE, Color.GREEN, Color.YELLOW, Color.RED, Color.MAGENTA
-        )
-
     @OnCreateLayout
     fun onCreateLayout(
         c: ComponentContext,
@@ -59,7 +54,7 @@ internal object HomeViewSpec {
                     Text.create(c).textRes(R.string.loading_msg)
                         .alignSelf(YogaAlign.CENTER)
                         .textAlignment(Layout.Alignment.ALIGN_CENTER)
-                        .textColorRes(R.color.white).heightPercent(50F)
+                        .textColorRes(R.color.white)
                         .verticalGravity(VerticalGravity.CENTER)
                         .marginRes(YogaEdge.ALL, R.dimen.margin_xlarge)
                 )

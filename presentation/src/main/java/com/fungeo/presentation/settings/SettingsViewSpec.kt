@@ -7,7 +7,9 @@ import com.facebook.litho.annotations.*
 import com.facebook.litho.widget.Image
 import com.facebook.litho.widget.Text
 import com.facebook.litho.widget.VerticalGravity
+import com.facebook.yoga.YogaAlign
 import com.facebook.yoga.YogaEdge
+import com.facebook.yoga.YogaJustify
 import com.fungeo.data.entity.LocationWithName
 import com.fungeo.presentation.R
 
@@ -45,6 +47,7 @@ internal object SettingsViewSpec {
                 .textSizeRes(R.dimen.p1)
         ).child(
             Row.create(c)
+                .alignItems(YogaAlign.CENTER)
                 .apply {
                     if (defaultLocation == null) {
 
@@ -52,20 +55,18 @@ internal object SettingsViewSpec {
                             Text.create(c)
                                 .textRes(R.string.no_default_location)
                                 .textColorRes(R.color.white)
-                                .marginRes(YogaEdge.BOTTOM, R.dimen.margin_large)
                                 .verticalGravity(VerticalGravity.CENTER)
                                 .marginRes(YogaEdge.HORIZONTAL, R.dimen.margin_large)
-                                .textSizeRes(R.dimen.p3)
+                                .textSizeRes(R.dimen.p2)
                         )
                     } else {
                         child(
                             Text.create(c)
                                 .text("${defaultLocation.name}, ${defaultLocation.countryCode}")
                                 .textColorRes(R.color.white)
-                                .marginRes(YogaEdge.BOTTOM, R.dimen.margin_large)
                                 .verticalGravity(VerticalGravity.CENTER)
                                 .marginRes(YogaEdge.HORIZONTAL, R.dimen.margin_large)
-                                .textSizeRes(R.dimen.p3)
+                                .textSizeRes(R.dimen.p2)
                         )
                         child(
                             Image
