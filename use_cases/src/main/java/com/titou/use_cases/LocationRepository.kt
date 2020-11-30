@@ -20,7 +20,7 @@ class LocationRepository(
             .subscribeOn(Schedulers.io())
 
     fun saveNewLocation(locationName: String) =
-        getLocationForName(locationName)?.let { location -> databaseLocationSource.insert(location) }
+        deviceLocationSource.getLocationForName(locationName)?.let { location -> databaseLocationSource.insert(location) }
             ?.observeOn(AndroidSchedulers.mainThread())
             ?.subscribeOn(Schedulers.io())
 
@@ -31,7 +31,7 @@ class LocationRepository(
 
 
     fun saveDefaultLocation(locationName: String) =
-        getLocationForName(locationName)?.let { locWithName ->
+        deviceLocationSource.getLocationForName(locationName)?.let { locWithName ->
             databaseLocationSource.insert(locWithName.copy(main = true))
         }?.observeOn(AndroidSchedulers.mainThread())
             ?.subscribeOn(Schedulers.io())
@@ -50,7 +50,7 @@ class LocationRepository(
         if (locationAsAList.isEmpty()) {
             getCurrentLocationObservable().map {
                 LocationWithName(
-                    name = getLocationNameForPosition(it) ?: "Your position",
+                    name = deviceLocationSource.getLocationNameForPosition(it) ?: "Your position",
                     location = it,
                     countryCode = "",
                     main = true
@@ -63,18 +63,11 @@ class LocationRepository(
 
     }
 
-    fun build(appCompatActivity: AppCompatActivity) = deviceLocationSource.build(appCompatActivity)
+    fun buildDeviceLocationManager(appCompatActivity: AppCompatActivity) = deviceLocationSource.build(appCompatActivity)
 
     fun getCurrentLocationObservable() = deviceLocationSource.getCurrentLocationObservable()
         .observeOn(AndroidSchedulers.mainThread())
         .subscribeOn(Schedulers.io())
-
-
-    fun getLocationNameForPosition(location: Location) =
-        deviceLocationSource.getLocationNameForPosition(location)
-
-    fun getLocationForName(locationName: String) =
-        deviceLocationSource.getLocationForName(locationName)
 }
 
 

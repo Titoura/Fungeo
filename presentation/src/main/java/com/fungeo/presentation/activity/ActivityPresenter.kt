@@ -16,6 +16,6 @@ class ActivityPresenter(
             Log.e("ActivityPresenter", it.localizedMessage?:"Error while displaying new fragment")
         }
 
-    fun buildDeviceLocationManager(appCompatActivity : AppCompatActivity) = locationRepository.build(appCompatActivity)
+    fun buildDeviceLocationManager(appCompatActivity : AppCompatActivity) = locationRepository.buildDeviceLocationManager(appCompatActivity)
     fun getCurrentLocationObservable() = locationRepository.getCurrentLocationObservable()
 }
